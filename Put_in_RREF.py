@@ -134,5 +134,6 @@ if __name__ == "__main__":
         assert(False)
 
     M = np.matrix(sys.argv[1])
+    M = M.astype(float)
 
     put_matrix_in_reduced_row_echelon_form(M)
