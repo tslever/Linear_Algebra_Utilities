@@ -18,3 +18,17 @@ Put_in_RREF parses a string representation of a matrix from a command-line argum
         Make sure row elements are separated by commas and rows are separated by semicolons.</li>
     <li>To save output to a text file, pipe output using "python Put_in_RREF.py 'a11, a12, a13; a21, a22, a23' | Out-File Example_Process.txt".</li>
 </ol>
+<h3>GCDFinder.java</h3>
+
+GCDFinder represents an object that finds the Greatest Common Denominator of two integers. Usage on Windows:
+
+<ol>
+    <li>Download GCDFinder.java.</li>
+    <li>Compile using PowerShell and the command, <u>javac -classpath "&lt;path to JRE's rt.jar&gt;" GCDFinder.java</u>.</li>
+    <li>Run using PowerShell and the command, <u>java GCDFinder &lt;integer&gt;, &lt;integer&gt;</u>.</li>
+</ol>
+
+The core of GCDFinder converts an array of integers into an array of magnitudes, applies the "Modern Euclidean Algorithm" to the array of magnitudes, and finds the largest element of the array resulting from the algorithm. The source of "The Modern Euclidean Algorithm" is
+
+Knuth, Donald E. (1998). "4.5.2. The Greatest Common Divisor". The Art of Computer Programming, Volume 2, Seminumerical Algorithms, Third Edition.
+
