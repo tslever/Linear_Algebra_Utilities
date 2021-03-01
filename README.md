@@ -1,5 +1,5 @@
-# Linear_Algebra_Utilities
- A repository for Linear-Algebra utilities, like "Put_in_RREF".
+# Math_Utilities
+ A repository for math utilities.
 
 <h3>Put_in_RREF.py</h3>
 
