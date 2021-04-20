@@ -14,7 +14,7 @@ Generate_Linear_Model_for_Cleaned_No-Show_Dataset parses a filename correspondin
     <li>Open PowerShell in project directory.</li>
     <li>Install dependencies with "pip install -r requirements.txt"</li>
     <li>Run "Generate_Linear_Model_for_Cleaned_No-Show_Dataset.py 'Cleaned_No-Show_Dataset.csv'".</li>
-    <li>To save output to a text file, pipe output using "python Put_in_RREF.py 'Cleaned_No-Show_Dataset.csv' | Out-File Info_about_Linear_Model.txt".</li>
+    <li>To save output to a text file, pipe output using "python Generate_Linear_Model_for_Cleaned_No-Show_Dataset.py 'Cleaned_No-Show_Dataset.csv' | Out-File Info_about_Linear_Model.txt".</li>
 </ol>
 
 
