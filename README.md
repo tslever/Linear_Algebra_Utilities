@@ -11,7 +11,7 @@ Generate_Linear_Model_for_Cleaned_No-Show_Dataset parses a filename correspondin
 <ol>
     <li>Install Python 3.9.1 and pip.</li>
     <li>Clone repository.</li>
-    <li>Open PowerShell in repository root directory.</li>
+    <li>Open PowerShell in project directory.</li>
     <li>Install dependencies with "pip install -r requirements.txt"</li>
     <li>Run "Generate_Linear_Model_for_Cleaned_No-Show_Dataset.py 'Cleaned_No-Show_Dataset.csv'".</li>
     <li>To save output to a text file, pipe output using "python Put_in_RREF.py 'Cleaned_No-Show_Dataset.csv' | Out-File Info_about_Linear_Model.txt".</li>
@@ -27,7 +27,7 @@ Put_in_RREF parses a string representation of a matrix from a command-line argum
 <ol>
     <li>Install Python 3.9.1 and pip.</li>
     <li>Clone repository.</li>
-    <li>Open PowerShell in repository root directory.</li>
+    <li>Open PowerShell in project directory.</li>
     <li>Install dependencies with "pip install -r requirements.txt"</li>
     <li>Run "python Put_in_RREF.py 'a11, a12, a13; a21, a22, a23'".<br/>
         Make sure matrix brackets are written as single quotes. <br/>
