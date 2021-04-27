@@ -2,19 +2,19 @@
  A repository for math utilities.
 
 
-<h3>Generate_Linear_Model_for_Cleaned_No-Show_Dataset.py</h3>
+<h3>Generate_Linear_Model_for_People_Vaccinated_over_Time_in_US.py</h3>
 
-Generate_Linear_Model_for_Cleaned_No-Show_Dataset parses a filename corresponding to a Cleaned_No-Show_Dataset, and outputs information about a generated linear model.
+Generate_Linear_Model_for_People_Vaccinated_over_Time_in_US parses a filename corresponding to a dataset of Number of People Vaccinated over Time in the United States, and outputs information about a generated linear model.
 
-<h5>Using Generate_Linear_Model_for_Cleaned_No-Show_Dataset.py on a Windows-10 PC</h5>
+<h5>Using Generate_Linear_Model_for_People_Vaccinated_over_Time_in_US.py on a Windows-10 PC</h5>
 
 <ol>
     <li>Install Python 3.9.1 and pip.</li>
     <li>Clone repository.</li>
     <li>Open PowerShell in project directory.</li>
     <li>Install dependencies with "pip install -r requirements.txt"</li>
-    <li>Run "Generate_Linear_Model_for_Cleaned_No-Show_Dataset.py 'Cleaned_No-Show_Dataset.csv'".</li>
-    <li>To save output to a text file, pipe output using "python Generate_Linear_Model_for_Cleaned_No-Show_Dataset.py 'Cleaned_No-Show_Dataset.csv' | Out-File Info_about_Linear_Model.txt".</li>
+    <li>Run "python Generate_Linear_Model_for_People_Vaccinated_over_Time_in_US.py 'Number_of_People_Vaccinated_over_Time_in_United_States.csv'".</li>
+    <li>To save output to a text file, pipe output using "python Generate_Linear_Model_for_People_Vaccinated_over_Time_in_US.py 'Number_of_People_Vaccinated_over_Time_in_United_States.csv' | Out-File Info_about_Linear_Model.txt".</li>
 </ol>
 
 
