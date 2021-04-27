@@ -28,7 +28,7 @@ def the_processed_dataset_based_on(the_name_of_the_file_with_the_dataset):
 
     the_dataset["date"] = pd.to_datetime(the_dataset["date"])
 
-    the_dataset["date"] = (the_dataset["date"] - datetime.datetime(2021,1,14)).dt.days
+    the_dataset.insert(the_dataset.columns.get_loc("date")+1, "day", (the_dataset["date"] - datetime.datetime(2021,1,14)).dt.days)
 
     return the_dataset
 
@@ -65,7 +65,7 @@ def the_processed_dataset_based_on(the_name_of_the_file_with_the_dataset):
 
 def the_independent_and_actual_dependent_variable_datasets_based_on(the_processed_dataset):
 
-    independent_variable_dataset = the_processed_dataset[["date"]]
+    independent_variable_dataset = the_processed_dataset[["day"]]
 
     #independent_variable_dataset = \
     #    the_processed_dataset[[ \
@@ -117,7 +117,7 @@ def the_dataset_with_predictions_based_on(the_processed_dataset, the_linear_mode
 
     the_dataset_with_predictions["Predicted"] = the_predicted_dependent_variable_values
 
-    #the_dataset_with_predictions.to_csv("Dataset_with_Predictions.csv")
+    the_dataset_with_predictions.to_csv("Number_of_People_Vaccinated_over_Time_in_the_United_States--with_Days_and_Predictions.csv")
 
     return the_dataset_with_predictions
 
@@ -155,10 +155,17 @@ def output_stuff_about( \
 
     print(
         "\nBased on the dataset in the file with the inputted filename, " + \
-        "a linear model of the relationship between the number of no-shows " + \
+        "a linear model of the relationship between number of people fully vaccinated " + \
         f"and the following {len(the_independent_variable_values.columns)} independent " + \
-        "variables was developed.\n"
+        "variable(s) was developed.\n"
     )
+
+    #print(
+    #    "\nBased on the dataset in the file with the inputted filename, " + \
+    #    "a linear model of the relationship between the number of no-shows " + \
+    #    f"and the following {len(the_independent_variable_values.columns)} independent " + \
+    #    "variables was developed.\n"
+    #)
 
     print(the_independent_variable_values.columns.to_list())
 
