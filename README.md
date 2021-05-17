@@ -1,5 +1,5 @@
 # Academic_Stuff
- A repository for math utilities.
+ A repository for academic stuff.
 
 
 <h3>Generate_Linear_Model_for_People_Vaccinated_over_Time_in_US.py</h3>
