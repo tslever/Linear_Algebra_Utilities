@@ -1,4 +1,4 @@
-# Math_Utilities
+# Academic_Stuff
  A repository for math utilities.
 
 
