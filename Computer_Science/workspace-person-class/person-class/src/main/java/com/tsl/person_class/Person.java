@@ -12,7 +12,7 @@ package com.tsl.person_class;
 * Person represents the structure for a person.
 */
 
-public class Person
+class Person
 {
 	//*** Task #1: define the instance variables
 	
@@ -148,6 +148,7 @@ public class Person
 	/**
 	 * toString outputs information for this person.
 	 */
+	@Override
 	public String toString() {
 		return
 			"Name: " + this.name + "\n" +
