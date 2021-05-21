@@ -64,7 +64,7 @@ public class App
         
         try {
         	int[] theArrayOfSquares = calculateTheArrayOfTheSquaresOfTheValuesIn(theArrayOfRandomIntegers);
-        	System.out.println("The array of squares has the following values:");
+        	System.out.println("\nThe array containing squares of the values in the original array has the following values:");
         	display(theArrayOfSquares);
         }
         catch (AnIntegerOverflowException theIntegerOverflowException) {
@@ -185,30 +185,31 @@ public class App
      * @return
      * @throws AnIntegerOverflowException
      */
-    private static int[] calculateTheArrayOfTheSquaresOfTheValuesIn(int[] theArrayOfRandomIntegers)
-        	throws AnIntegerOverflowException {
-        	
-        	int[] theArrayOfSquares = new int[theArrayOfRandomIntegers.length];
-        	
-        	int theElement;
-        	for (int i = 0; i < theArrayOfRandomIntegers.length; i++) {
-        		
-        		theElement = theArrayOfRandomIntegers[i];
-        		
-        		if (((theElement > 0) && (theElement > THE_MAXIMUM_INTEGER / theElement)) ||
-        			((theElement < 0) && (theElement < THE_MAXIMUM_INTEGER / theElement))) {
-        			throw new AnIntegerOverflowException(
-        				"The magnitude of " + theElement + " is too large for the element to be squared.\n" +
-        				"Try restricting the range of values to [-46,340, 46,340].");
-        		}
-        		
-        		theArrayOfSquares[i] = theElement * theElement;
-        		
-        	}
-        	
-        	return theArrayOfSquares;
-        	
-        }
+    // TODO: Change public to private upon completion of testing.
+    public static int[] calculateTheArrayOfTheSquaresOfTheValuesIn(int[] theArrayOfRandomIntegers)
+    	throws AnIntegerOverflowException {
+    	
+    	int[] theArrayOfSquares = new int[theArrayOfRandomIntegers.length];
+    	
+    	int theElement;
+    	for (int i = 0; i < theArrayOfRandomIntegers.length; i++) {
+    		
+    		theElement = theArrayOfRandomIntegers[i];
+    		
+    		if (((theElement > 0) && (theElement > THE_MAXIMUM_INTEGER / theElement)) ||
+    			((theElement < 0) && (theElement < THE_MAXIMUM_INTEGER / theElement))) {
+    			throw new AnIntegerOverflowException(
+    				"The magnitude of " + theElement + " is too large for the element to be squared.\n" +
+    				"Try restricting the range of values to [-46,340, 46,340].");
+    		}
+    		
+    		theArrayOfSquares[i] = theElement * theElement;
+    		
+    	}
+    	
+    	return theArrayOfSquares;
+    	
+    }
     
     
     /**
@@ -325,7 +326,8 @@ public class App
      * display displays prettily the values in an array.
      * @param theArrayOfRandomIntegers
      */
-    private static void display(int[] theArray) {
+    // TODO: Change public to private upon completion of testing.
+    public static void display(int[] theArray) {
     	
         for (int i = 0; i < theArray.length - 1; i++) {
         	System.out.print(theArray[i] + "  ");
@@ -342,7 +344,8 @@ public class App
      * @return
      * @throws AMaximumValueDoesNotExistException
      */
-    private static int findTheIndexForTheMaximumValueIn(int[] theArrayOfRandomIntegers)
+    // TODO: Change public to private upon completion of testing.
+    public static int findTheIndexForTheMaximumValueIn(int[] theArrayOfRandomIntegers)
     	throws AMaximumValueDoesNotExistException {
     	
     	if (theArrayOfRandomIntegers.length == 0) {
@@ -364,6 +367,23 @@ public class App
     
     
     /**
+     * findTheSecondMaximumValueIn finds the second maximum value given the array of random integers.
+     * @param theArrayOfRandomIntegers
+     * @return
+     * @throws AMaximumValueDoesNotExistException
+     * @throws ASecondMaximumValueDoesNotExistException
+     */
+    private static int findTheSecondMaximumValueIn(int[] theArrayOfRandomIntegers)
+    	throws AMaximumValueDoesNotExistException, ASecondMaximumValueDoesNotExistException {
+    	
+    	int theIndexOfTheMaximumValue = findTheIndexForTheMaximumValueIn(theArrayOfRandomIntegers);
+  
+    	return findTheSecondMaximumValueGiven(theArrayOfRandomIntegers, theIndexOfTheMaximumValue);
+    	
+    }
+    
+    
+    /**
      * findTheSecondMaximumValueGiven finds the second maximum value given an array of random integers and the index
      * of the maximum value (or throws a second maximum value does not exist exception).
      * @param theArrayOfRandomIntegers
@@ -371,7 +391,8 @@ public class App
      * @return
      * @throws ASecondMaximumValueDoesNotExistException
      */
-    private static int findTheSecondMaximumValueGiven(
+    // TODO: Change public to private upon completion of testing.
+    public static int findTheSecondMaximumValueGiven(
     	int[] theArrayOfRandomIntegers, int theIndexOfTheMaximumValue)
     	throws ASecondMaximumValueDoesNotExistException {
     	
@@ -392,23 +413,6 @@ public class App
     	}
     	
     	return theSecondMaximumValue;
-    	
-    }
-    
-    
-    /**
-     * findTheSecondMaximumValueIn finds the second maximum value given the array of random integers.
-     * @param theArrayOfRandomIntegers
-     * @return
-     * @throws AMaximumValueDoesNotExistException
-     * @throws ASecondMaximumValueDoesNotExistException
-     */
-    private static int findTheSecondMaximumValueIn(int[] theArrayOfRandomIntegers)
-    	throws AMaximumValueDoesNotExistException, ASecondMaximumValueDoesNotExistException {
-    	
-    	int theIndexOfTheMaximumValue = findTheIndexForTheMaximumValueIn(theArrayOfRandomIntegers);
-  
-    	return findTheSecondMaximumValueGiven(theArrayOfRandomIntegers, theIndexOfTheMaximumValue);
     	
     }
     
