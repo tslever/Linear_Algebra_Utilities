@@ -1,14 +1,14 @@
-package com.tsl.inheritance__working_with_people;
+package com.tsl.inheritance__more_people;
 
 
 /**
  * Employee represents the structure for an employee.
  * @author Tom Lever
  * @version 1.0
- * @since 05/18/21
+ * @since 05/21/21
  *
  */
-class Employee extends Person {
+class Employee extends Person implements Payroll {
 
 	
 	/**

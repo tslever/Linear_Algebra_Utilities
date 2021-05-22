@@ -1,14 +1,14 @@
-package com.tsl.inheritance__working_with_people;
+package com.tsl.inheritance__more_people;
 
 
 /**
  * Student represents the structure for a student.
  * @author Tom Lever
  * @version 1.0
- * @since 05/18/21
+ * @since 05/21/21
  *
  */
-class Student extends Person {
+class Student extends Person implements Payroll {
 
 	/**
 	 * studentNumber is an attribute of a student.

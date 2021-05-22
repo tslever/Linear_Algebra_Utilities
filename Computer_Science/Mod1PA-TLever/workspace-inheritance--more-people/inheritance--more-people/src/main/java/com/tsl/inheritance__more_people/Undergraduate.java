@@ -1,14 +1,14 @@
-package com.tsl.inheritance__working_with_people;
+package com.tsl.inheritance__more_people;
 
 
 /**
  * Undergraduate represents the structure for an undergraduate.
  * @author Tom Lever
  * @version 1.0
- * @since 05/18/21
+ * @since 05/21/21
  *
  */
-class Undergraduate extends Student {
+class Undergraduate extends Student implements Payroll {
 
 	/**
 	 * major is an attribute of an undergraduate.

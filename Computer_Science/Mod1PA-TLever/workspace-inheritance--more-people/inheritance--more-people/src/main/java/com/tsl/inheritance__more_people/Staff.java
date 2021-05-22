@@ -1,27 +1,27 @@
-package com.tsl.inheritance__working_with_people;
+package com.tsl.inheritance__more_people;
 
 
 /**
- * Faculty represents the structure for a faculty member.
+ * Staff represents the structure for a staff member.
  * @author Tom Lever
  * @version 1.0
- * @since 05/18/21
+ * @since 05/21/21
  *
  */
-class Faculty extends Employee {
+class Staff extends Employee implements Payroll {
 
 	
 	/**
-	 * rank is an attribute of a faculty member.
+	 * rank is an attribute of a staff member.
 	 */
-	private String rank;
+	protected String rank;
 	
 	
 	/**
-	 * Faculty() is a zero-argument constructor for Faculty that calls the two-argument constructor of Employee
+	 * Staff() is a zero-argument constructor for Staff that calls the two-argument constructor of Employee
 	 * with arguments "" and 0 and initializes rank to "".
 	 */
-	public Faculty() {
+	public Staff() {
 		//this.name = "";
 		//this.empID = 0;
 		super("", 0);
@@ -30,13 +30,13 @@ class Faculty extends Employee {
 	
 	
 	/**
-	 * Faculty(String name, int empID, String rank) is a three-argument constructor for Faculty that calls the
+	 * Staff(String name, int empID, String rank) is a three-argument constructor for Staff that calls the
 	 * two-argument constructor of Employee with arguments name and empID and initializes rank to rank.
 	 * @param name
 	 * @param empID
 	 * @param rank
 	 */
-	public Faculty(String name, int empID, String rank) {
+	public Staff(String name, int empID, String rank) {
 		//this.name = name;
 		//this.empID = empID;
 		super(name, empID);
@@ -46,7 +46,7 @@ class Faculty extends Employee {
 	
 	
 	/**
-	 * getRank provides this faculty member's rank.
+	 * getRank provides this staff member's rank.
 	 * @return
 	 */
 	public String getRank() {
@@ -55,7 +55,7 @@ class Faculty extends Employee {
 	
 	
 	/**
-	 * setRank sets this faculty member's rank.
+	 * setRank sets this staff member's rank.
 	 * @param rank
 	 */
 	public void setRank(String rank) {
@@ -64,14 +64,14 @@ class Faculty extends Employee {
 	
 	
 	/**
-	 * toString provides information for this faculty member.
+	 * toString provides information for this staff member.
 	 */
 	@Override
 	public String toString() {
 		return
 			"Name: " + this.name + "\n" +
 			"Employee ID: " + this.empID + "\n" +
-			"Faculty Rank: " + this.rank;
+			"Staff Rank: " + this.rank;
 	}
 	
 }

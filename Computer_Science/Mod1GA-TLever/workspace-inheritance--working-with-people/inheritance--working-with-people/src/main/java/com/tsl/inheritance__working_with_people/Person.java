@@ -4,6 +4,8 @@ package com.tsl.inheritance__working_with_people;
 /**
  * Person represents the structure for a person.
  * @author Tom Lever
+ * @version 1.0
+ * @since 05/18/21
  *
  */
 class Person {

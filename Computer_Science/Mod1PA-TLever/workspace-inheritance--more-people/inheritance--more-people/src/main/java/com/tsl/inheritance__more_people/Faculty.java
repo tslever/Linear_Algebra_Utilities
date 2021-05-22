@@ -1,11 +1,11 @@
-package com.tsl.inheritance__working_with_people;
+package com.tsl.inheritance__more_people;
 
 
 /**
  * Faculty represents the structure for a faculty member.
  * @author Tom Lever
  * @version 1.0
- * @since 05/18/21
+ * @since 05/21/21
  *
  */
 class Faculty extends Employee {
@@ -14,7 +14,7 @@ class Faculty extends Employee {
 	/**
 	 * rank is an attribute of a faculty member.
 	 */
-	private String rank;
+	protected String rank;
 	
 	
 	/**
