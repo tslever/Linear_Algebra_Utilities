@@ -1,4 +1,4 @@
-package com.tsl.more_operations_with_arrays.input_output_utilities;
+//package com.tsl.more_operations_with_arrays.input_output_utilities;
 
 
 import com.tsl.more_operations_with_arrays.App;
@@ -126,23 +126,12 @@ public class AnInputOutputManager {
 						"The proposed lower limit is greater than the proposed upper limit.");
 				}
 				
-				if (theProposedUpperLimit > App.THE_MAXIMUM_INTEGER + theProposedLowerLimit - 1) {
-					throw new AnIntegerOverflowException(
-						"The proposed range [lower limit, upper limit] is too wide for a random number generator.\n" +
-						"A possible range is [-1,073,741,823, 1,073,741,823]."
-					);
-				}
-				
 				return new int[] {theProposedLowerLimit, theProposedUpperLimit};
 				
 			}
 			
 			catch (ALowerLimitIsGreaterThanUpperLimitException theLowerLimitIsGreaterThanUpperLimitException) {
 				System.out.println(theLowerLimitIsGreaterThanUpperLimitException.getMessage());
-			}
-			
-			catch (AnIntegerOverflowException theIntegerOverflowException) {
-				System.out.println(theIntegerOverflowException.getMessage());
 			}
 		
 		}

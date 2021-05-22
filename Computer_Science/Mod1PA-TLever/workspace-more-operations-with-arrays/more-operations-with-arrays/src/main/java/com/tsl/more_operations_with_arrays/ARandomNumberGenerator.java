@@ -35,7 +35,16 @@ class ARandomNumberGenerator {
 	 * @param theUpperLimit
 	 * @return
 	 */
-    public int getARandomIntegerInclusivelyBetween(int theLowerLimit, int theUpperLimit) {
+    public int getARandomIntegerInclusivelyBetween(int theLowerLimit, int theUpperLimit)
+    	throws AnIntegerOverflowException {
+    	
+		if (theUpperLimit > App.THE_MAXIMUM_INTEGER + theLowerLimit - 1) {
+			throw new AnIntegerOverflowException(
+				"The proposed range [lower limit, upper limit] is too wide for a random number generator.\n" +
+				"A possible range is [-1,073,741,823, 1,073,741,823]."
+			);
+		}
+    	
     	return this.thePopularRandomNumberGenerator.nextInt((theUpperLimit - theLowerLimit) + 1) + theLowerLimit;
     }
 	

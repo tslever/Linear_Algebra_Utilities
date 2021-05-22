@@ -1,4 +1,4 @@
-//package com.tsl.more_operations_with_arrays;
+package com.tsl.polynomials;
 
 
 /**

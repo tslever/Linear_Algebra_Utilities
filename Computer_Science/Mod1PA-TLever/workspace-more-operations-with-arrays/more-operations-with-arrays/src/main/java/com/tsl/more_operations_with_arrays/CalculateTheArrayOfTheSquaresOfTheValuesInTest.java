@@ -24,10 +24,10 @@ public class CalculateTheArrayOfTheSquaresOfTheValuesInTest {
 	public void testCalculateTheArrayOfTheSquaresOfTheValuesInForTheWidestValidCenteredRange() {
 		
 		System.out.println("Running testCalculateTheArrayOfTheSquaresOfTheValuesInForTheWidestValidCenteredRange.");
-        
-		int[] theArrayOfRandomIntegers = setUpAnArrayOfRandomIntegersGiven(-46340, 46340);
 		
         try {
+    		int[] theArrayOfRandomIntegers = setUpAnArrayOfRandomIntegersGiven(-46340, 46340);
+        	
         	int[] theArrayOfSquares = App.calculateTheArrayOfTheSquaresOfTheValuesIn(theArrayOfRandomIntegers);
         	System.out.println("The array of squares has the following values:");
         	App.display(theArrayOfSquares);
@@ -50,10 +50,10 @@ public class CalculateTheArrayOfTheSquaresOfTheValuesInTest {
 	public void testCalculateTheArrayOfTheSquaresOfTheValuesInForAnArrayOfValuesTooSmall() {
 		
 		System.out.println("Running testCalculateTheArrayOfTheSquaresOfTheValuesInForAnArrayOfValuesTooSmall.");
-        
-		int[] theArrayOfRandomIntegers = setUpAnArrayOfRandomIntegersGiven(-46341, -46341);
 		
         try {
+    		int[] theArrayOfRandomIntegers = setUpAnArrayOfRandomIntegersGiven(-46341, -46341);
+        	
         	int[] theArrayOfSquares = App.calculateTheArrayOfTheSquaresOfTheValuesIn(theArrayOfRandomIntegers);
         	System.out.println("The array of squares has the following values:");
         	App.display(theArrayOfSquares);
@@ -76,10 +76,10 @@ public class CalculateTheArrayOfTheSquaresOfTheValuesInTest {
 	public void testCalculateTheArrayOfTheSquaresOfTheValuesInForAnArrayOfValuesTooLarge() {
 		
 		System.out.println("Running testCalculateTheArrayOfTheSquaresOfTheValuesInForAnArrayOfValuesTooLarge.");
-        
-		int[] theArrayOfRandomIntegers = setUpAnArrayOfRandomIntegersGiven(46341, 46341);
 		
         try {
+    		int[] theArrayOfRandomIntegers = setUpAnArrayOfRandomIntegersGiven(46341, 46341);
+        	
         	int[] theArrayOfSquares = App.calculateTheArrayOfTheSquaresOfTheValuesIn(theArrayOfRandomIntegers);
         	System.out.println("The array of squares has the following values:");
         	App.display(theArrayOfSquares);
@@ -93,7 +93,8 @@ public class CalculateTheArrayOfTheSquaresOfTheValuesInTest {
 	}
 	
 	
-	private int[] setUpAnArrayOfRandomIntegersGiven(int theLowerLimit, int theUpperLimit) {
+	private int[] setUpAnArrayOfRandomIntegersGiven(int theLowerLimit, int theUpperLimit)
+		throws AnIntegerOverflowException {
 		
 		int[] theArrayOfRandomIntegers = new int[1000];
 		

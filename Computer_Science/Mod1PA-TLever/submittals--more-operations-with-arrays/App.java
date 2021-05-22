@@ -1,4 +1,4 @@
-package com.tsl.more_operations_with_arrays;
+//package com.tsl.more_operations_with_arrays;
 
 
 import com.tsl.more_operations_with_arrays.input_output_utilities.AnInputOutputManager;
@@ -222,21 +222,35 @@ public class App
         
         int theNumberOfElementsInAnArrayOfRandomIntegers =
         	theInputOutputManager.askAboutAndReadANumberOfElementsForAnArrayOfRandomIntegers();
-        
-        int[] theLowerLimitAndTheUpperLimitForAnInteger =
-        	theInputOutputManager.askAboutAndReadALowerLimitAndAnUpperLimitForAnInteger();
     	
         int[] theArrayOfRandomIntegers = new int[theNumberOfElementsInAnArrayOfRandomIntegers];
         
         ARandomNumberGenerator theRandomNumberGenerator = new ARandomNumberGenerator();
         
-        for (int i = 0; i < theArrayOfRandomIntegers.length; i++) {
-        	theArrayOfRandomIntegers[i] =
-        		theRandomNumberGenerator.getARandomIntegerInclusivelyBetween(
-        			theLowerLimitAndTheUpperLimitForAnInteger[0], theLowerLimitAndTheUpperLimitForAnInteger[1]);
-        }
+        while (true) {
         
-        return theArrayOfRandomIntegers;
+	        try {
+		        
+	            int[] theLowerLimitAndTheUpperLimitForAnInteger =
+	                	theInputOutputManager.askAboutAndReadALowerLimitAndAnUpperLimitForAnInteger();
+		        
+		        for (int i = 0; i < theArrayOfRandomIntegers.length; i++) {
+		        	theArrayOfRandomIntegers[i] =
+		        		theRandomNumberGenerator.getARandomIntegerInclusivelyBetween(
+		        			theLowerLimitAndTheUpperLimitForAnInteger[0], theLowerLimitAndTheUpperLimitForAnInteger[1]);
+		        }
+		        
+		        return theArrayOfRandomIntegers;
+	        
+	        }
+	        
+	        catch (AnIntegerOverflowException theIntegerOverflowException) {
+	        	
+	        	theIntegerOverflowException.getMessage();
+	        	
+	        }
+        
+        }        
     	
     }
     
