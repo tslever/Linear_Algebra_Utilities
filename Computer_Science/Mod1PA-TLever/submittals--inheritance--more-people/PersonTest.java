@@ -1,4 +1,4 @@
-package com.tsl.inheritance__more_people;
+//package com.tsl.inheritance__more_people;
 
 
 import org.junit.jupiter.api.Test;
