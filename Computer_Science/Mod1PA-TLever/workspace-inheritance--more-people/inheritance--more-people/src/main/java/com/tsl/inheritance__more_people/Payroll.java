@@ -12,6 +12,9 @@ package com.tsl.inheritance__more_people;
  */
 abstract interface Payroll {
 
+	String theField = "";
+	
+	abstract class ATestClass { };
 	
 	/**
 	 * calculateMonthlyGrossPay() requires implementing classes to implement calculateMonthlyGrossPay().

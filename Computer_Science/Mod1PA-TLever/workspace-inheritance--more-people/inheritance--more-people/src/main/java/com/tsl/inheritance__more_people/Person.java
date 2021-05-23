@@ -10,6 +10,14 @@ package com.tsl.inheritance__more_people;
  */
 class Person implements Payroll {
 
+	private String theField;
+	
+	private class ATestClass {
+		public ATestClass() {
+			
+		}
+	}
+	
 	/**
 	 * name is an attribute of a person.
 	 */
@@ -92,5 +100,9 @@ class Person implements Payroll {
 		);
 	}
 	
+	
+	private void test() {
+		
+	}
 	
 }
