@@ -27,7 +27,10 @@ public class LibraryHelperDriver {
 	/**
 	 * main is the entry point of the program. The program requests that a user enter books codes, followed by "end". The
 	 * program prints the book codes, the number of book codes corresponding to reference books, and the number of book
-	 * codes corresponding to fiction books. There are no preconditions to running this program.
+	 * codes corresponding to fiction books. The program throws exceptions if the program is terminated while input is
+	 * being requested from the user, a push of a book code onto the stack is requested when the stack is full, a look
+	 * at the top book code on the stack is requested when the stack is empty, and when a pop off the stack is requested
+	 * when the stack is empty.
 	 * @param args
 	 */
 		
@@ -45,7 +48,9 @@ public class LibraryHelperDriver {
 
 		while(!bookCode.equalsIgnoreCase("end")) {
 			System.out.print("Enter the book code, or type end, if you want to stop: ");
-			bookCode=input.next();
+			
+			bookCode=input.next(); // throws NoSuchElementException, IllegalStateException
+			
 			if(!bookCode.equalsIgnoreCase("end")) {
 				libraryStack.push(bookCode);
 			}

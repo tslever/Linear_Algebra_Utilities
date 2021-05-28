@@ -101,6 +101,7 @@ public class LibraryHelper<T> implements StackInterface<T> {
 		return (this.topIndex == -1);
 	}
 
+	
 	public boolean isFull() {
 	// Returns true if this stack is full, otherwise returns false.
 
