@@ -50,7 +50,7 @@ public class ImprovedLinkedStackDriver {
 		}
 
 		//*** Task #1: test method toString()
-		System.out.println(myStack);
+		System.out.println("The stack contains:\n" + myStack);
 
 		//*** Task #2: test method toString()
 		int stackSize=myStack.size();
