@@ -157,9 +157,9 @@ public class ImprovedArrayBoundedStack<T> implements StackInterface<T>
 			return false;
 		}
 		
-		T theStorage = this.elements[topIndex];
+		T theElementInStorage = this.elements[topIndex];
 		this.elements[topIndex] = this.elements[topIndex - 1];
-		this.elements[topIndex - 1] = theStorage;
+		this.elements[topIndex - 1] = theElementInStorage;
 		return true;
 
 	}
