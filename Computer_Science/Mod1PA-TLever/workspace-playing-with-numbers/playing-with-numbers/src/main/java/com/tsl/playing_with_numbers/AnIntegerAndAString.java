@@ -50,5 +50,4 @@ class AnIntegerAndAString {
 		return this.theString;
 	}
 	
-	
 }

@@ -1,4 +1,7 @@
-package com.tsl.linked_list_based_bounded_stack;
+package com.tsl.grading_exams;
+
+
+import java.util.ArrayList;
 
 
 /**
@@ -10,28 +13,121 @@ package com.tsl.linked_list_based_bounded_stack;
 * Completion date: 05/28/21
 */
 
-public class ImprovedLinkedStack<T> implements StackInterface<T>
-{
-	protected LLNode<T> top;   // reference to the top of this stack
+class ExamPaperStack implements StackInterface<ExamPaper> {
 
 	
-	public ImprovedLinkedStack() {
+	/**
+	 * THE_MINIMUM_INTEGER is an attribute of ExamPaperStack.
+	 */
+	private final int THE_MINIMUM_INTEGER = -2147483648;
+	
+	
+	/**
+	 * THE_MAXIMUM_INTEGER is an attribute of ExamPaperStack.
+	 */
+	private final int THE_MAXIMUM_INTEGER = 2147483647;
+	
+	
+	private LLNode<ExamPaper> top;   // reference to the top of this stack
+	
+	/**
+	 * The sumOfTheExamScore is an attribute of ExamPaperStack.
+	 */
+	private int sumOfTheExamScores;
+	
+	
+	protected ExamPaperStack() {
 	/**
 	 * ImprovedLinkedStack() is a zero-parameter constructor for ImprovedLinkedStack that sets the top linked-list node
 	 * of this linked list based stack to null.
 	 */
 		
-		top = null;
+		this.top = null;
+		this.sumOfTheExamScores = 0;
+		
 	}
 
-	public void push(T element) {
+	
+	
+	private void checkForDuplicateStudentName() throws ADuplicateStudentNameException {
+		
+		ArrayList<String> theStudentNames = new ArrayList<String>();
+		
+		LLNode<ExamPaper> theCurrentLinkedListNode = top;
+		
+		while (theCurrentLinkedListNode != null) {
+			
+			if (theStudentNames.contains(theCurrentLinkedListNode.getTheInformation().getTheStudentsName())) {
+				throw new ADuplicateStudentNameException("Exception: Duplicate student name.");
+			}
+			
+		}
+		
+	}
+	
+	
+	/**
+	 * checkTheAdditionOf throws an integer-overflow exception if addition of a first integer and a
+	 * second integer would result in a sum greater than the maximum integer or less than the minimum integer.
+	 * @param theFirstInteger
+	 * @param theSecondInteger
+	 * @throws AnIntegerOverflowException
+	 */
+	private void checkTheAdditionOf(int theFirstInteger, int theSecondInteger) throws AnIntegerOverflowException {
+		
+		if ((theFirstInteger > 0) && (theSecondInteger > 0) && (theFirstInteger > this.THE_MAXIMUM_INTEGER - theSecondInteger) ||
+			(theFirstInteger < 0) && (theSecondInteger < 0) && (theFirstInteger < this.THE_MINIMUM_INTEGER - theSecondInteger)) {
+			
+			throw new AnIntegerOverflowException(
+				"Integer-overflow exception: the sum of " +
+				theFirstInteger +
+				" and " +
+				theSecondInteger +
+				" is outside the interval [" +
+				this.THE_MINIMUM_INTEGER +
+				", " +
+				this.THE_MAXIMUM_INTEGER +
+				"]."
+			);
+			
+		}
+		
+	}
+	
+	
+	protected double getTheAverageExamScore() throws ANoExamScoresExistToAverageException {
+		
+		if (size() < 1) {
+			throw new ANoExamScoresExistToAverageException("Exception: No exam scores exist to average.");
+		}
+		
+		return (double)this.sumOfTheExamScores / (double)size();
+				
+	}
+	
+	
+	public void push(ExamPaper theExamPaper) {
 	// Places element at the top of this stack.
 
-		LLNode<T> newNode = new LLNode<T>(element);
+		LLNode<ExamPaper> newNode = new LLNode<ExamPaper>(theExamPaper);
 		newNode.setsItsReferenceTo(top);
 		top = newNode;
 		
 	}
+	
+	
+	public void pushCheckForDuplicateStudentNameAndAddToSumTheScoreOf(ExamPaper theExamPaper)
+		throws ADuplicateStudentNameException, AnIntegerOverflowException {
+		
+		checkForDuplicateStudentName();
+		
+		push(theExamPaper);
+		
+		checkTheAdditionOf(this.sumOfTheExamScores, theExamPaper.getTheExamScore());
+		this.sumOfTheExamScores += theExamPaper.getTheExamScore();
+		
+	}
+	
 
 	public void pop() {
 	// Throws StackUnderflowException if this stack is empty,
@@ -43,7 +139,7 @@ public class ImprovedLinkedStack<T> implements StackInterface<T>
 			top = top.getTheReferenceToTheNextLinkedListNode();
 	}
 
-	public T top() {
+	public ExamPaper top() {
 	// Throws StackUnderflowException if this stack is empty,
 	// otherwise returns the information of the top element of this stack.
 
@@ -79,7 +175,7 @@ public class ImprovedLinkedStack<T> implements StackInterface<T>
 		
 		String theStringRepresentingTheStack = "";
 		
-		LLNode<T> theCurrentNode = top;
+		LLNode<ExamPaper> theCurrentNode = top;
 		theStringRepresentingTheStack += "\t" + top.getTheInformation();
 		theCurrentNode = theCurrentNode.getTheReferenceToTheNextLinkedListNode();
 		
@@ -96,12 +192,12 @@ public class ImprovedLinkedStack<T> implements StackInterface<T>
 		//*	returns a count of how many items are currently on the stack.
 
 
-	public int size() {
+	protected int size() {
 	// returns a count of how many elements are on the stack
 		
 		int theNumberOfElementsOnTheStack = 0;
 		
-		LLNode<T> theCurrentNode = top;
+		LLNode<ExamPaper> theCurrentNode = top;
 		while (theCurrentNode != null) {
 			theNumberOfElementsOnTheStack++;
 			theCurrentNode = theCurrentNode.getTheReferenceToTheNextLinkedListNode();
@@ -114,7 +210,7 @@ public class ImprovedLinkedStack<T> implements StackInterface<T>
 		//*** Task #3: define method  popSome(int count): void
 		//*	removes the top count elements from the stack
 
-	public void popSome(int count) {
+	protected void popSome(int count) {
 	// if possible, removes top count elements from stack;
 	// otherwise throws StackUnderflowException
 
@@ -136,7 +232,7 @@ public class ImprovedLinkedStack<T> implements StackInterface<T>
 		//*	 if there are less than two elements on the stack returns false;
 		//*	 otherwise it reverses the order of the top two elements on the stack and returns true
 
-	public boolean swapStart() {
+	protected boolean swapStart() {
 	// if possible, reverses order of top 2 elements and returns true;
 	// otherwise returns false
 		
@@ -144,7 +240,7 @@ public class ImprovedLinkedStack<T> implements StackInterface<T>
 			return false;
 		}
 		
-		LLNode<T> theNodeInStorage = top.getTheReferenceToTheNextLinkedListNode();
+		LLNode<ExamPaper> theNodeInStorage = top.getTheReferenceToTheNextLinkedListNode();
 		top.setsItsReferenceTo(top.getTheReferenceToTheNextLinkedListNode().getTheReferenceToTheNextLinkedListNode());
 		theNodeInStorage.setsItsReferenceTo(top);
 		top = theNodeInStorage;
@@ -156,7 +252,7 @@ public class ImprovedLinkedStack<T> implements StackInterface<T>
 		//*	 otherwise it both removes and returns the top element of the stack.
 
 
-	public T poptop() {
+	protected ExamPaper poptop() {
 	// Throws StackUnderflowException if this stack is empty,
 	// otherwise removes and returns top element from this stack.
 
@@ -166,7 +262,7 @@ public class ImprovedLinkedStack<T> implements StackInterface<T>
 			);
 		}
 		
-		T theInformationOfTheTopLinkedListNode = top();
+		ExamPaper theInformationOfTheTopLinkedListNode = top();
 		pop();
 		return theInformationOfTheTopLinkedListNode;
 
