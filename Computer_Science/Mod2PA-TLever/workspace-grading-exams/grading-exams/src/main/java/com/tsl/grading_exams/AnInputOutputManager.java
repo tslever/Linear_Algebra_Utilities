@@ -27,8 +27,7 @@ class AnInputOutputManager {
 	 * askAboutAndReadAStudentsNameAndAnExamScore prompts a user to propose a student's name and an exam score.
 	 * @return
 	 */
-	protected static ExamPaperStack askAboutAndReadStudentsNamesAndExamScores()
-		throws InputMismatchException, NoSuchElementException {
+	protected static ExamPaperStack askAboutAndReadStudentsNamesAndExamScores() throws NoSuchElementException {
 		
 		ExamPaperStack theExamPaperStack = new ExamPaperStack();
 	
@@ -41,6 +40,12 @@ class AnInputOutputManager {
 			String theProposedStudentsName = scanner.nextLine();
 			
 			if (theProposedStudentsName.equals("end")) {
+				
+				if (theExamPaperStack.size() < 1) {
+					System.out.println("Exception: The exam-paper stack is empty.");
+					continue;
+				}
+				
 				return theExamPaperStack;
 			}
 			
@@ -74,7 +79,7 @@ class AnInputOutputManager {
 			}
 			
 			try {
-				theExamPaperStack.pushCheckForDuplicateStudentNameAndAddToSumTheScoreOf(
+				theExamPaperStack.checkForDuplicateStudentNamePushAndAddToSumTheScoreOf(
 					new ExamPaper(theProposedStudentsName, theProposedExamScore)
 				);
 			}

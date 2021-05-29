@@ -17,50 +17,57 @@ class ExamPaperStack implements StackInterface<ExamPaper> {
 
 	
 	/**
-	 * THE_MINIMUM_INTEGER is an attribute of ExamPaperStack.
+	 * THE_MINIMUM_INTEGER is an attribute of this exam-paper stack.
 	 */
 	private final int THE_MINIMUM_INTEGER = -2147483648;
 	
 	
 	/**
-	 * THE_MAXIMUM_INTEGER is an attribute of ExamPaperStack.
+	 * THE_MAXIMUM_INTEGER is an attribute of this exam-paper stack.
 	 */
 	private final int THE_MAXIMUM_INTEGER = 2147483647;
 	
 	
+
 	private LLNode<ExamPaper> top;   // reference to the top of this stack
 	
+	
 	/**
-	 * The sumOfTheExamScore is an attribute of ExamPaperStack.
+	 * sumOfTheExamScore is an attribute of this exam-paper stack.
 	 */
 	private int sumOfTheExamScores;
 	
 	
+	/**
+	 * theStudentsNames is a component of this exam-paper stack.
+	 */
+	ArrayList<String> theStudentNames;
+	
+	
 	protected ExamPaperStack() {
 	/**
-	 * ImprovedLinkedStack() is a zero-parameter constructor for ImprovedLinkedStack that sets the top linked-list node
-	 * of this linked list based stack to null.
+	 * ExamPaperStack() is a zero-parameter constructor for ExamPaperStack that sets the top linked-list node
+	 * of this linked list based stack to null, sets sumOfTheExamScores to 0, and sets theStudentsNames to an empty
+	 * object of type ArrayList.
 	 */
 		
 		this.top = null;
 		this.sumOfTheExamScores = 0;
+		this.theStudentNames = new ArrayList<String>();
 		
 	}
-
 	
 	
-	private void checkForDuplicateStudentName() throws ADuplicateStudentNameException {
-		
-		ArrayList<String> theStudentNames = new ArrayList<String>();
-		
-		LLNode<ExamPaper> theCurrentLinkedListNode = top;
-		
-		while (theCurrentLinkedListNode != null) {
+	/**
+	 * checkWhetherIsDuplicate(String theStudentName) throws a duplicate student name exception if this exam-paper
+	 * stack's array of students' names contains the student-name argument.
+	 * @param theStudentName
+	 * @throws ADuplicateStudentNameException
+	 */
+	private void checkWhetherIsDuplicate(String theStudentName) throws ADuplicateStudentNameException {
 			
-			if (theStudentNames.contains(theCurrentLinkedListNode.getTheInformation().getTheStudentsName())) {
-				throw new ADuplicateStudentNameException("Exception: Duplicate student name.");
-			}
-			
+		if (this.theStudentNames.contains(theStudentName)) {
+			throw new ADuplicateStudentNameException("Exception: Duplicate student name.");
 		}
 		
 	}
@@ -79,15 +86,8 @@ class ExamPaperStack implements StackInterface<ExamPaper> {
 			(theFirstInteger < 0) && (theSecondInteger < 0) && (theFirstInteger < this.THE_MINIMUM_INTEGER - theSecondInteger)) {
 			
 			throw new AnIntegerOverflowException(
-				"Integer-overflow exception: the sum of " +
-				theFirstInteger +
-				" and " +
-				theSecondInteger +
-				" is outside the interval [" +
-				this.THE_MINIMUM_INTEGER +
-				", " +
-				this.THE_MAXIMUM_INTEGER +
-				"]."
+				"Integer-overflow exception: the sum of " + theFirstInteger + " and " + theSecondInteger +
+				" is outside the interval [" + this.THE_MINIMUM_INTEGER + ", " + this.THE_MAXIMUM_INTEGER + "]."
 			);
 			
 		}
@@ -95,6 +95,12 @@ class ExamPaperStack implements StackInterface<ExamPaper> {
 	}
 	
 	
+	/**
+	 * getTheAverageExamScore provides the average of the exam scores for all of the exam papers in this stack, or
+	 * throws a no exam scores exist to average exception.
+	 * @return
+	 * @throws ANoExamScoresExistToAverageException
+	 */
 	protected double getTheAverageExamScore() throws ANoExamScoresExistToAverageException {
 		
 		if (size() < 1) {
@@ -116,14 +122,29 @@ class ExamPaperStack implements StackInterface<ExamPaper> {
 	}
 	
 	
-	public void pushCheckForDuplicateStudentNameAndAddToSumTheScoreOf(ExamPaper theExamPaper)
+	/**
+	 * checkForDuplicateStudentNamePushAndAddToSumTheScoreOf checks whether the student's name corresponding to its
+	 * exam-paper argument is a duplicate (and throws a duplicate student name exception if it is), adds the name to
+	 * this exam-paper stack's array of student's names, pushes the exam paper onto this stack, checks the addition of
+	 * the running sum of exam scores corresponding to the exam papers on this stack and the present exam paper's score
+	 * (and throws an integer-overflow exception if the check fails), and adds the present exam paper's score to the
+	 * running sum.
+	 * 
+	 * @param theExamPaper
+	 * @throws ADuplicateStudentNameException
+	 * @throws AnIntegerOverflowException
+	 */
+	public void checkForDuplicateStudentNamePushAndAddToSumTheScoreOf(ExamPaper theExamPaper)
 		throws ADuplicateStudentNameException, AnIntegerOverflowException {
 		
-		checkForDuplicateStudentName();
+		checkWhetherIsDuplicate(theExamPaper.getTheStudentsName());
+		
+		this.theStudentNames.add(theExamPaper.getTheStudentsName());
 		
 		push(theExamPaper);
 		
 		checkTheAdditionOf(this.sumOfTheExamScores, theExamPaper.getTheExamScore());
+		
 		this.sumOfTheExamScores += theExamPaper.getTheExamScore();
 		
 	}
@@ -133,28 +154,34 @@ class ExamPaperStack implements StackInterface<ExamPaper> {
 	// Throws StackUnderflowException if this stack is empty,
 	// otherwise removes top element from this stack.
 
-		if (isEmpty())
+		if (isEmpty()) {
 			throw new StackUnderflowException("Pop attempted on an empty stack.");
-		else
-			top = top.getTheReferenceToTheNextLinkedListNode();
+		}
+		
+		top = top.getTheReferenceToTheNextLinkedListNode();
+		
 	}
 
+	
 	public ExamPaper top() {
 	// Throws StackUnderflowException if this stack is empty,
 	// otherwise returns the information of the top element of this stack.
 
-		if (isEmpty())
+		if (isEmpty()) {
 			throw new StackUnderflowException("Top attempted on an empty stack.");
-		else
-			return top.getTheInformation();
+		}
+		
+		return top.getTheInformation();
 	}
 
+	
 	public boolean isEmpty() {
 	// Returns true if this stack is empty, otherwise returns false.
 
 		return (top == null);
 	}
 
+	
 	public boolean isFull() {
 	// Returns false - a linked stack is never full
 
@@ -176,8 +203,11 @@ class ExamPaperStack implements StackInterface<ExamPaper> {
 		String theStringRepresentingTheStack = "";
 		
 		LLNode<ExamPaper> theCurrentNode = top;
-		theStringRepresentingTheStack += "\t" + top.getTheInformation();
-		theCurrentNode = theCurrentNode.getTheReferenceToTheNextLinkedListNode();
+		if (theCurrentNode != null) {
+			theCurrentNode = top;
+			theStringRepresentingTheStack += "\t" + top.getTheInformation();
+			theCurrentNode = theCurrentNode.getTheReferenceToTheNextLinkedListNode();
+		}
 		
 		while (theCurrentNode != null) {
 			theStringRepresentingTheStack += "\n\t" + theCurrentNode.getTheInformation();
@@ -210,6 +240,7 @@ class ExamPaperStack implements StackInterface<ExamPaper> {
 		//*** Task #3: define method  popSome(int count): void
 		//*	removes the top count elements from the stack
 
+	
 	protected void popSome(int count) {
 	// if possible, removes top count elements from stack;
 	// otherwise throws StackUnderflowException
