@@ -3,7 +3,9 @@ package Org.TSL.HelloWorld;
 
 /** *******************************************************************************************************************
  * HelloWorld encapsulates the entry point of this program, which outputs "Hello World!" to the standard output stream.
- * Hell
+ * @author Tom Lever
+ * @version 1.0
+ * @since 05/30/21
  *
  ******************************************************************************************************************* */
 
