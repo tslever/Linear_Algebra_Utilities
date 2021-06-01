@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
  * @since 06/01/21
  ******************************************************************************************* */
 
-public class UsBillsAndCoinsDeterminerTest {
+public class AUsBillsAndCoinsDeterminerTest {
 
     
     /** ------------------------------------------------------------------------------------------------------------

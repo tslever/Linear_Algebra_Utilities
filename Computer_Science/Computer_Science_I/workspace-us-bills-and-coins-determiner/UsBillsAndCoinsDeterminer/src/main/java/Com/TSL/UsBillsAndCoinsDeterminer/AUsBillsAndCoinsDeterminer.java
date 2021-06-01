@@ -18,7 +18,7 @@ import org.apache.commons.math3.util.Precision;
  * @since 05/31/21
  ******************************************************************************************************************** */
 
-public class UsBillsAndCoinsDeterminer 
+public class AUsBillsAndCoinsDeterminer 
 {
 
     /** --------------------------------------------------------------------------------------------------------------
