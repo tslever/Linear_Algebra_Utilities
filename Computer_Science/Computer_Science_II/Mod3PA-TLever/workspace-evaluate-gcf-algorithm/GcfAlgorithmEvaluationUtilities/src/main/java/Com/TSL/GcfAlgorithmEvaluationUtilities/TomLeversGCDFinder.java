@@ -1,3 +1,5 @@
+package Com.TSL.GcfAlgorithmEvaluationUtilities;
+
 
 import java.lang.Math;
 import java.util.logging.Level;
@@ -10,10 +12,10 @@ import java.util.logging.LogRecord;
  * @version 0.0
  * @author Tom Lever
  */
-public class GCDFinder {
+public class TomLeversGCDFinder {
 
     // Logger logger allows logging output to console.
-    private static Logger logger = Logger.getLogger(GCDFinder.class.getName());
+    private static Logger logger = Logger.getLogger(TomLeversGCDFinder.class.getName());
 
     /**
      * Method main represents the entrypoint of GCDFinder's functionality.
