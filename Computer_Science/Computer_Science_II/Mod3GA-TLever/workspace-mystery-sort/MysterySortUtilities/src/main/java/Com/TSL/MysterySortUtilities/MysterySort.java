@@ -20,6 +20,8 @@ public class MysterySort
 	// TODO: Change to private before deployment.
 	static final int THE_MAXIMUM_INTEGER = 2147483647;
 	
+	private static int theNumberOfComparisons = 0;
+	
 	
 	/** ----------------------------------------------------------------------------------------------------------------
 	 * main is the entry point of this program, which creates an array of random integers, displays the created array,
@@ -48,6 +50,7 @@ public class MysterySort
     	mysterySort(theArrayToSort);
     	System.out.println("The array after sorting: " + Arrays.toString(theArrayToSort));    	
     	TheInputAndOutputManager.printsWhetherOrNotIsSorted(theArrayToSort);
+    	System.out.println("mysterySort performed " + theNumberOfComparisons + " comparisons.");
         
     }
     
@@ -84,6 +87,8 @@ public class MysterySort
         {
             for(int k=0; k<arr.length-i-1; k++)
             {
+            	theNumberOfComparisons++;
+            	
                 if(arr[k]>arr[k+1])
                 {
                	    int hold=arr[k+1];
@@ -95,10 +100,5 @@ public class MysterySort
          	}
       	}
     }
-    
-    
-
-    
-
         
 }
