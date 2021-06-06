@@ -1,7 +1,7 @@
 package Com.TSL.UsBillsAndCoinsDeterminer;
 
 
-import java.util.Random;
+import org.apache.commons.math3.random.RandomDataGenerator;
 import org.apache.commons.math3.util.Precision;
 import org.junit.jupiter.api.Test;
 
@@ -34,27 +34,22 @@ public class AUsBillsAndCoinsDeterminerTest {
         double theRandomUsMonetaryAmount;
         
         
+        RandomDataGenerator theRandomDataGenerator = new RandomDataGenerator();
+        
         while (true)
         {
         
             try
             {
-                theRandomNumberOfDollars =
-                    TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween (0, THE_MAXIMUM_INTEGER);
+                theRandomNumberOfDollars = theRandomDataGenerator.nextInt (0, Integer.MAX_VALUE);
                 
-                theRandomNumberOfCents =
-                    TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween (0, 100);
+                theRandomNumberOfCents = theRandomDataGenerator.nextInt (0, 100);
                 
                 theRandomUsMonetaryAmount =
                     Precision.round ( (double)theRandomNumberOfDollars + (double)theRandomNumberOfCents / 100.0, 2);
                 
                 AnAccountOfUsBillsAndCoins theAccountOfUsBillsAndCoins =
                     new AnAccountOfUsBillsAndCoins (theRandomUsMonetaryAmount);
-            }
-            
-            catch (AnIntegerOverflowException theIntegerOverflowException)
-            {
-                System.out.println (theIntegerOverflowException.getMessage ());
             }
             
             catch (ACalculatedUsMonetaryAmountIsNotEqualToProvidedAmountException e)
