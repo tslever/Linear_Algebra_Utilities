@@ -16,36 +16,6 @@ import org.junit.jupiter.api.Test;
 public class MainTest {
 
 	
-	/** -------------------------------------------------------------------------------------------------------------
-	 * testMain tests the method main by running smallest with one argument, smallest with two arguments, and repeat.
-	 * repeat is given valid arguments. The case where repeat has a negative number of instances is tested in the
-	 * main program execution.
-	 ------------------------------------------------------------------------------------------------------------- */
-	
-	@Test
-	public void testMainWithValidArgumentsAndArrays ()
-	{
-		
-        int[] arr = {2, 4, 3, 89, 0, -9};
-
-        System.out.println(RecursiveMethodsArrays.smallest(arr));
-
-        int[][] ar = {{1, 2, 3, 4, 1, 0}, {0, -8, -90}};
-
-        System.out.println(RecursiveMethodsArrays.smallest(ar));
-
-        try
-        {
-        	System.out.println(RecursiveMethodsArrays.repeat("Java", Integer.parseInt("3")));
-        }
-        catch (IllegalArgumentException theIllegalArgumentException)
-        {
-        	System.out.println(theIllegalArgumentException.getMessage());
-        }
-		
-	}
-	
-	
 	/** --------------------------------------------------------------------------------------------
 	 * testMainWithValidArgumentsAndAnEmptyArray tests main with valid arguments and an empty array.
 	 -------------------------------------------------------------------------------------------- */
@@ -54,21 +24,92 @@ public class MainTest {
 	public void testMainWithValidArgumentsAndAnEmptyArray ()
 	{
 		
+		System.out.println("Running testMainWithValidArgumentsAndAnEmptyArray.");
+		
 		int[] arr = {};
 		
 		try {
 	        if (arr.length == 0)
 	        {
 	    	    throw new ANoMinimumExistsException (
-	    	    	"Exception: No minimum exists in array arr = " + Arrays.toString(arr));
+	    	    	"Exception: No minimum exists in array arr = " + Arrays.toString(arr) + ".");
 	        }
+	        
+	        System.out.println("A minimum exists in array " + Arrays.toString(arr) + ".");
 		}
 		
 		catch (ANoMinimumExistsException theNoMinimumExistsException)
 		{
-			System.out.println("\n" + theNoMinimumExistsException.getMessage());
+			System.out.println(theNoMinimumExistsException.getMessage());
 		}
 		
+		System.out.println();
+		
+	}
+	
+	
+	/** ----------------------------------------------------------------------------------------------------------------
+	 * testMainWithANumberOfInputArgumentsOtherThanTwo tests the method main with a number of input arguments other than
+	 * 2.
+	 ---------------------------------------------------------------------------------------------------------------- */
+	
+	@Test
+	public void testMainWithANumberOfInputArgumentsOtherThanTwo ()
+	{
+		
+		System.out.println("Running testMainWithANumberOfInputArgumentsOtherThanTwo.");
+		
+        String[] args = "I 8 s".split(" ");
+        
+        try {
+	        if (args.length != 2)
+	        {
+	        	throw new IllegalArgumentException("Exception: The number of input arguments is not equal to 2.");
+	        }
+	        
+	        System.out.println("The number of input arguments is equal to 2.");
+        }
+        
+        catch (IllegalArgumentException theIllegalArgumentException)
+        {
+        	System.out.println(theIllegalArgumentException.getMessage());
+        }
+        
+        System.out.println();
+		
+	}
+	
+	
+	/** --------------------------------------------------------------
+	 * testMain tests the method main an invalid number of repetitions.
+	 -------------------------------------------------------------- */
+	
+	@Test
+	public void testMainWithAnInvalidNumberOfRepetitions ()
+	{
+		
+		System.out.println("Running testMainWithAnInvalidNumberOfRepetitions.");
+		
+        String[] args = "I s s".split(" ");
+        
+        try {
+        	System.out.println(RecursiveMethodsArrays.repeat(args[0], Integer.parseInt(args[1])));
+        	
+        	System.out.println("Completed repeat.");
+        }
+        
+        catch (IllegalArgumentException theIllegalArgumentException)
+        {
+        	System.out.println(theIllegalArgumentException.getMessage());
+        }
+        
+        catch (NumberFormatException theNumberFormatException)
+        {
+        	System.out.println(theNumberFormatException.getMessage());
+        }
+		
+        System.out.println();
+        
 	}
 	
 }

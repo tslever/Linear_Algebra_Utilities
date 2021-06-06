@@ -32,13 +32,30 @@ public class RecursiveMethodsArrays
     {
     	
         int[] arr = {2, 4, 3, 89, 0, -9};
+        
+        if (arr.length == 0)
+        {
+    	    throw new ANoMinimumExistsException ("Exception: No minimum exists in array arr = " + Arrays.toString(arr));
+        }
 
         System.out.println(smallest(arr));
 
         int[][] ar = {{1, 2, 3, 4, 1, 0}, {0, -8, -90}};
 
+        if (ar.length == 0)
+        {
+    	    throw new ANoMinimumExistsException (
+    	    	"Exception: No minimum exists in array arr = " + Arrays.toString (arr)
+    	    );
+        }
+        
         System.out.println(smallest(ar));
-
+        
+        if (args.length != 2)
+        {
+        	throw new IllegalArgumentException("Exception: The number of input arguments is not equal to 2.");
+        }
+        
         try
         {
         	System.out.println(repeat(args[0], Integer.parseInt(args[1])));
@@ -71,8 +88,6 @@ public class RecursiveMethodsArrays
         }
         
         System.out.println (smallest (ar));
-
-        System.out.println (repeat ("I", 8));
       
     }
    
