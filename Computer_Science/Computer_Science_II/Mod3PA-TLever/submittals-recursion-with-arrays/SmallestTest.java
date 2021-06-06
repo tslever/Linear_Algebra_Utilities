@@ -1,4 +1,4 @@
-package Com.TSL.RecursionWithArrays;
+//package Com.TSL.RecursionWithArrays;
 
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class SmallestTest {
 	/** -----------------------------------------------------------------------------------------------------------------
 	 * testSmallestWithOneParameter tests the method smallest with one parameter by continuously creating one-dimensional
 	 * arrays of various sizes of various integers and demonstrating that smallest finds the same minimum integer as
-	 * a min method in Java's Arrays package for each array. testSmallestWithOneParameter stops if a different minimum
+	 * a min method in Java's Arrays //package for each array. testSmallestWithOneParameter stops if a different minimum
 	 * is found.
 	 ----------------------------------------------------------------------------------------------------------------- */
 	
