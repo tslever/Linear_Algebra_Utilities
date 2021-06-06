@@ -2,6 +2,7 @@ package Com.TSL.MysterySortUtilities;
 
 
 import java.util.Arrays;
+import org.apache.commons.math3.random.RandomDataGenerator;
 
 
 /** *****************************************************************************************************************
@@ -17,9 +18,6 @@ import java.util.Arrays;
 public class MysterySort
 {
 	
-	// TODO: Change to private before deployment.
-	static final int THE_MAXIMUM_INTEGER = 2147483647;
-	
 	private static int theNumberOfComparisons = 0;
 	
 	
@@ -29,18 +27,18 @@ public class MysterySort
 	 * and indicates whether or not the sorted array is actually sorted.
 	 ---------------------------------------------------------------------------------------------------------------- */
 	
-    public static void main( String[] args ) throws AnInvalidArraySizeException, AnIntegerOverflowException
+    public static void main( String[] args ) throws AnInvalidArraySizeException
     {
     	
     	int theArraySize = TheInputAndOutputManager.providesTheArraySizeAsAnIntegerBasedOn(args[0]);
     	
     	
     	int[] theArrayToSort = new int[theArraySize];
+    	
+    	RandomDataGenerator theRandomDataGenerator = new RandomDataGenerator();
     	for (int i = 0; i < theArraySize; i++)
     	{
-    		theArrayToSort[i] =
-    			TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween(0, THE_MAXIMUM_INTEGER - 1);
-    		//theArrayToSort[i] = TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween(0, 99);
+    		theArrayToSort[i] = theRandomDataGenerator.nextInt(0, Integer.MAX_VALUE - 1);
     	}
     	System.out.println("The array to sort: " + Arrays.toString(theArrayToSort));
     	TheInputAndOutputManager.printsWhetherOrNotIsSorted(theArrayToSort);

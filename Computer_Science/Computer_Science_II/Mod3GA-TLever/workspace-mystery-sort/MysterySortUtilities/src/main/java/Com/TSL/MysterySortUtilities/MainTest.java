@@ -2,7 +2,9 @@ package Com.TSL.MysterySortUtilities;
 
 
 import java.util.Arrays;
+import org.apache.commons.math3.random.RandomDataGenerator;
 import org.junit.jupiter.api.Test;
+
 
 
 /** *******************************************************************************************************************
@@ -24,7 +26,7 @@ public class MainTest {
 	 ---------------------------------------------------------------------------------------------------------------- */
 	
 	@Test
-	public void testMain() throws AnIntegerOverflowException
+	public void testMain()
 	{
 		int[] theArraySizes = {0, 1, 2, 3, 5, 10};
 		
@@ -32,10 +34,11 @@ public class MainTest {
 		{
 
 	    	int[] theArrayToSort = new int[theArraySizes[i]];
+	    	
+	    	RandomDataGenerator theRandomDataGenerator = new RandomDataGenerator();
 	    	for (int j = 0; j < theArraySizes[i]; j++)
 	    	{
-	    		theArrayToSort[j] =
-	    			TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween(0, MysterySort.THE_MAXIMUM_INTEGER - 1);
+	    		theArrayToSort[j] = theRandomDataGenerator.nextInt(0, Integer.MAX_VALUE - 1);
 	    	}
 	    	System.out.println("The array to sort: " + Arrays.toString(theArrayToSort));
 	    	TheInputAndOutputManager.printsWhetherOrNotIsSorted(theArrayToSort);
