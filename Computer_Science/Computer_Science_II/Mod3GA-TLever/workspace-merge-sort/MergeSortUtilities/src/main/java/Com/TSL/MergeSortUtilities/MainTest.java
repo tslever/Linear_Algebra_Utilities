@@ -2,7 +2,7 @@ package Com.TSL.MergeSortUtilities;
 
 
 import java.util.Arrays;
-
+import org.apache.commons.math3.random.RandomDataGenerator;
 import org.junit.jupiter.api.Test;
 
 
@@ -31,7 +31,7 @@ public class MainTest {
 	--------------------------------------------------------------------------------------------------------------- */
 	
 	@Test
-	public void testMain() throws AnIntegerOverflowException
+	public void testMain()
 	{
 		
 		int[] theArraySizes = {0, 1, 2, 3, 5, 10};
@@ -39,14 +39,13 @@ public class MainTest {
 		int[] theLowerLimits = new int[5];
 		int[] theUpperLimits = new int[theLowerLimits.length];
 		
+		RandomDataGenerator theRandomDataGenerator = new RandomDataGenerator();
 		for (int i = 0; i < theLowerLimits.length; i++)
 		{
-			theLowerLimits[i] = TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween(
-				THE_LOWER_LIMIT_FOR_AN_INTEGER, this.THE_UPPER_LIMIT_FOR_AN_INTEGER
-			);
+			theLowerLimits[i] = theRandomDataGenerator.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
 			
-			theUpperLimits[i] = TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween(
-				theLowerLimits[i], this.THE_UPPER_LIMIT_FOR_AN_INTEGER
+			theUpperLimits[i] = theRandomDataGenerator.nextInt(
+				theLowerLimits[i], Integer.MAX_VALUE
 			);
 		}
 		
@@ -59,7 +58,7 @@ public class MainTest {
 				
 				for (int k = 0; k < theArraySizes[i]; k++)
 				{
-					theArrayToSort[k] = TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween(
+					theArrayToSort[k] = theRandomDataGenerator.nextInt(
 						theLowerLimits[j], theUpperLimits[j]
 					);
 				}

@@ -2,6 +2,7 @@ package Com.TSL.MergeSortUtilities;
 
 
 import java.util.Arrays;
+import org.apache.commons.math3.random.RandomDataGenerator;
 
 
 /** ****************************************************************************************************************
@@ -29,7 +30,7 @@ class MergeSort
 	 ---------------------------------------------------------------------------------------------------------- */
 	
 	public static void main (String[] args)
-		throws AnInvalidArraySizeException, AnInvalidLimitsException, AnIntegerOverflowException
+		throws AnInvalidArraySizeException, AnInvalidLimitsException
 	{
 		int theArraySize = TheInputAndOutputManager.providesTheArraySizeAsAnIntegerBasedOn(args[0]);
 		int theLowerLimitForAnInteger = Integer.parseInt(args[1]);
@@ -44,11 +45,10 @@ class MergeSort
 		
 		int[] theArrayToSort = new int[theArraySize];
 		
+		RandomDataGenerator theRandomDataGenerator = new RandomDataGenerator();
 		for (int i = 0; i < theArraySize; i++)
 		{
-			theArrayToSort[i] = TheRandomNumberGenerator.getARandomIntegerInclusivelyBetween(
-				theLowerLimitForAnInteger, theUpperLimitForAnInteger
-			);
+			theArrayToSort[i] = theRandomDataGenerator.nextInt(theLowerLimitForAnInteger, theUpperLimitForAnInteger);
 		}
 		
 		System.out.println("The array to sort: " + Arrays.toString(theArrayToSort));
