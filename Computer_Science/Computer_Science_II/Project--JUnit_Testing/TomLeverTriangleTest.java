@@ -1,16 +1,10 @@
-/**
+/** **************************************************************************************************************************
+* TomLeverTriangleTest encapsulates 28 JUnit tests for the Triangle class. Calling the triangeType method of a Triangle object
+* provides the type of the triangle (i.e., equilateral, isosceles, or scale), or an error message.
 *
-* Student name:  xxxxx
-* Completion date: xxxx
-*
-* TriangleTest.txt: the template file of TriangleTest.java
-* Student tasks: 
-* - Write 20 JUnit test cases for Triangle class 
-* - Then run this file on the command line with the jar files provided
-*
-* AssertArrayEquals, AssertEquals, assertFalse, assertNotNull, assertNotSame, assertNull, assertNull, assertSame, assertThat,
-* assertTrue, fail
-*/
+* Student name:  Tom Lever
+* Completion date: 06/07/21
+*************************************************************************************************************************** */
 
 import static org.junit.Assert.*;
 import org.junit.Test;
