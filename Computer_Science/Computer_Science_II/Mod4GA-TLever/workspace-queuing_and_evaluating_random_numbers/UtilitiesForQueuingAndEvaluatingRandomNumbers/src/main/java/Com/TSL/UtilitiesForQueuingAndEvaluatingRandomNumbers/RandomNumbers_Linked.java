@@ -46,6 +46,8 @@ public class RandomNumbers_Linked<T> implements QueueInterface<T>
 	  
 	  this.rear = theLinkedListNodeForTheElement;
 	  
+	  this.numElements++;
+	  
   }
 
   
@@ -76,11 +78,7 @@ public class RandomNumbers_Linked<T> implements QueueInterface<T>
   public boolean isEmpty()
   // Returns true if this queue is empty; otherwise, returns false.
   {
- 		if (this.front == null) {
- 			return true;
- 		}
- 		
- 		return false;
+	  return (this.front == null);
   }
 
   
