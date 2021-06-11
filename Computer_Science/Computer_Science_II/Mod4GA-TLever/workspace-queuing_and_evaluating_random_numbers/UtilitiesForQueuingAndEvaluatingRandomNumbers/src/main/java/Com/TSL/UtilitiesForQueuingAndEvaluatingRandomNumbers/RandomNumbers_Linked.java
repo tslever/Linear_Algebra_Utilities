@@ -21,7 +21,7 @@ public class RandomNumbers_Linked<T> implements QueueInterface<T>
 
   
   /**
-   * RandomNumbers_Linked is the zero-parameter constructor for RandomNumbers_Linked, which sets this linked list's
+   * RandomNumbers_Linked is the zero-parameter constructor for RandomNumbers_Linked, which sets this queue's
    * front and rear node variables to reference null.
    */
   
