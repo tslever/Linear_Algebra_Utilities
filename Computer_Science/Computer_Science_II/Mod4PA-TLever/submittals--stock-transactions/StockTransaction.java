@@ -26,6 +26,7 @@ public class StockTransaction {
 		
 		this.frontLinkedListNode = null;
 		this.rearLinkedListNode = null;
+		this.numberOfElements = 0;
 		
 	}
 	

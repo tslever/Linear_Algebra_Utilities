@@ -15,9 +15,9 @@ public class NumericPalindrome<T> {
 
 	
 	private T[] elements;
-	private int numberOfElements;
 	private int indexOfTheFrontElement;
 	private int indexOfTheRearElement;
+	private int numberOfElements;
 	
 	
 	/**
@@ -31,7 +31,9 @@ public class NumericPalindrome<T> {
 	public NumericPalindrome(int theCapacity) {
 		
 		this.elements = (T[]) new Object[theCapacity];
+		this.indexOfTheFrontElement = 0;
 		this.indexOfTheRearElement = theCapacity - 1;
+		this.numberOfElements = 0;
 		
 	}
 	
