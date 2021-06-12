@@ -2,12 +2,22 @@ package Com.TSL.StockTransactionUtilities;
 
 
 /**
- * Hello world!
- *
+ * StockTransactionHistory encapsulates the entry point of this program, which creates a queue for individual stocks
+ * buys and sells stocks in bulk, tracks a running capital gain, and displays that capital gain.
+ * 
+ * @author Tom Lever
+ * @version 1.0
+ * @since 06/11/21
  */
 
 public class StockTransactionHistory 
 {
+	
+	/**
+	 * main is the entry point of this program, which creates a queue for individual stocks, buys and sells stocks in
+	 * bulk, tracks a running capital gain, and displays that capital gain.
+	 * @param args
+	 */
 	
     public static void main( String[] args )
     {

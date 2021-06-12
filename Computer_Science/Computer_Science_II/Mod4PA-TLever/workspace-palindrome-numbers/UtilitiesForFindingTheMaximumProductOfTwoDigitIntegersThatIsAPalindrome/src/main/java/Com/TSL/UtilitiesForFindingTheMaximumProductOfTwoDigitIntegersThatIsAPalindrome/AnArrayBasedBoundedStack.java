@@ -2,7 +2,11 @@ package Com.TSL.UtilitiesForFindingTheMaximumProductOfTwoDigitIntegersThatIsAPal
 
 
 /**
+ * AnArrayBasedBoundedStack represents the structure for an array-based bounded stack.
  * 
+ * @author Tom Lever
+ * @version 1.0
+ * @since 06/11/21
  */
 
 public class AnArrayBasedBoundedStack<T> {
@@ -97,6 +101,10 @@ public class AnArrayBasedBoundedStack<T> {
 		return (this.theIndexOfTheTopElement == (this.elements.length - 1));
 	}
 	
+	
+	/**
+	 * toString provides a string representation of this stack.
+	 */
 	
 	@Override
 	public String toString() {

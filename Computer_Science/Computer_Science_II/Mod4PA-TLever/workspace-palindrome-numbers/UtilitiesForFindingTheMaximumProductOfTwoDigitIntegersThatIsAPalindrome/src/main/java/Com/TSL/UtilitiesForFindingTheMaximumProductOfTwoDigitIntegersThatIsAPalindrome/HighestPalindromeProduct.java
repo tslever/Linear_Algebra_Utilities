@@ -2,12 +2,23 @@ package Com.TSL.UtilitiesForFindingTheMaximumProductOfTwoDigitIntegersThatIsAPal
 
 
 /**
- * Hello world!
- *
+ * HighestPalindromeProduct encapsulates the entry point of this program, which displays information about the highest
+ * product of two-digit integers that is a palindrome.
+ * 
+ * @author Tom Lever
+ * @version 1.0
+ * @since 06/11/21
  */
 
 public class HighestPalindromeProduct 
 {
+	
+	/**
+	 * main is the entry point of this program which displays information about the highest product of two-digit integers
+	 * that is a palindrome.
+	 * 
+	 * @param args
+	 */
 	
     public static void main( String[] args )
     {

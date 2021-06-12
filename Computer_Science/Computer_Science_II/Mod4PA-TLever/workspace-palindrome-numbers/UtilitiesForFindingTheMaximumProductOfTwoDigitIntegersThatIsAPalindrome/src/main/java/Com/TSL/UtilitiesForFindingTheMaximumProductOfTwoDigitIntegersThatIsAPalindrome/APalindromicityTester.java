@@ -1,8 +1,24 @@
 package Com.TSL.UtilitiesForFindingTheMaximumProductOfTwoDigitIntegersThatIsAPalindrome;
 
 
+/**
+ * APalindromicityTester represents the structure for a palindromicity tester, which tests whether an integer is a
+ * palindrome.
+ * 
+ * @author Tom Lever
+ * @version 1.0
+ * @since 06/11/21
+ */
+
 class APalindromicityTester {
 	
+	
+	/**
+	 * tests evaluates whether an integer is a palindrome.
+	 * 
+	 * @param theProduct
+	 * @return
+	 */
 	
 	protected boolean tests(int theProduct) {
 		
@@ -30,6 +46,13 @@ class APalindromicityTester {
 	}
 	
 	
+	/**
+	 * findTheNumberOfDigitsIn finds the number of digits in an integer.
+	 * 
+	 * @param theProduct
+	 * @return
+	 */
+	
     private int findTheNumberOfDigitsIn(int theProduct) {
     	
         int theConsumedVersionOfTheProduct = theProduct;
@@ -48,6 +71,13 @@ class APalindromicityTester {
     	
     }
 	
+    
+    /**
+     * getTheQueueOfDigitsIn provides a queue of the digits in an integer.
+     * 
+     * @param theProduct
+     * @return
+     */
     
     private NumericPalindrome<Integer> getTheQueueOfDigitsIn(int theProduct) {
     
@@ -69,6 +99,15 @@ class APalindromicityTester {
     	
     }
     
+    
+    /**
+     * isPalindromeTheIntegerRepresentedBy indicates whether or not an integer represented by a queue and a stack is a
+     * palindrome.
+     * 
+     * @param theQueueOfDigits
+     * @param theStackOfDigits
+     * @return
+     */
     
     private boolean isPalindromeTheIntegerRepresentedBy(
     	NumericPalindrome<Integer> theQueueOfDigits, AnArrayBasedBoundedStack<Integer> theStackOfDigits) {

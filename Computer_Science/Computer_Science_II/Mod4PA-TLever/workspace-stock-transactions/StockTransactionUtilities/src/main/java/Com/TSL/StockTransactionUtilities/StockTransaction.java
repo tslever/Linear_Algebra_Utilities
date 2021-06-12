@@ -1,6 +1,14 @@
 package Com.TSL.StockTransactionUtilities;
 
 
+/**
+ * StockTransaction represents the structure for a linked list based queue of stocks.
+ * 
+ * @author Tom Lever
+ * @version 1.0
+ * @since 06/11/21
+ */
+
 public class StockTransaction {
 
 	
@@ -8,6 +16,11 @@ public class StockTransaction {
 	private ALinkedListNode<Stock> rearLinkedListNode;
 	private int numberOfElements;
 	
+	
+	/**
+	 * StockTransaction is the zero-parameter constructor for StockTransaction, which sets the references to the
+	 * front linked list node and the rear linked list node to null.
+	 */
 	
 	public StockTransaction() {
 		
@@ -17,7 +30,13 @@ public class StockTransaction {
 	}
 	
 	
-	public void buyOneShare(Stock theStock) {
+	/**
+	 * buyOneShareOf enqueues one share of a stock in this queue of stocks.
+	 * 
+	 * @param theStock
+	 */
+	
+	public void buyOneShareOf(Stock theStock) {
 		
 		ALinkedListNode<Stock> theLinkedListNodeForTheStock = new ALinkedListNode<Stock>(theStock);
 		
@@ -35,16 +54,30 @@ public class StockTransaction {
 	}
 	
 	
+	/**
+	 * buy purchases <theNumberOfSharesToBuy> shares of a stock at the given purchase price, and outputs a completion
+	 * message.
+	 * 
+	 * @param theNumberOfSharesToBuy
+	 * @param thePurchasePrice
+	 */
+	
 	public void buy(int theNumberOfSharesToBuy, double thePurchasePrice) {
 		
     	for (int i = 0; i < theNumberOfSharesToBuy; i++) {
-    		buyOneShare(new Stock(thePurchasePrice));
+    		buyOneShareOf(new Stock(thePurchasePrice));
     	}
     	
     	System.out.println("Buying " + theNumberOfSharesToBuy + " shares at $" + thePurchasePrice + " each.\n");
 		
 	}
 	
+	
+	/**
+	 * sellOneShare dequeues one share from this queue of stocks.
+	 * 
+	 * @return
+	 */
 	
 	public Stock sellsOneShare() {
 		
@@ -65,6 +98,15 @@ public class StockTransaction {
 		
 	}
 	
+	
+	/**
+	 * sell sells <theNumberOfSharesToSell> shares of a stock at the given sale price, and outputs a completion
+	 * message.
+	 * 
+	 * @param theNumberOfStocksToSell
+	 * @param theSalePrice
+	 * @return
+	 */
 	
 	public double sell(int theNumberOfStocksToSell, double theSalePrice) {
 		
@@ -92,12 +134,22 @@ public class StockTransaction {
 	}
 	
 	
+	/**
+	 * isEmpty indicates whether or not this queue is empty.
+	 * 
+	 * @return
+	 */
+	
 	public boolean isEmpty() {
 		
 		return (this.frontLinkedListNode == null);
 		
 	}
 	
+	
+	/**
+	 * toString provides a string representation of this queue.
+	 */
 	
 	@Override
 	public String toString() {
