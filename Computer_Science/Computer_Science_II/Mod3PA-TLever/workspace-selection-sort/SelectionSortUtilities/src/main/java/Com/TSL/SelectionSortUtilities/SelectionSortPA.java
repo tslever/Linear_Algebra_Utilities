@@ -42,7 +42,8 @@ public class SelectionSortPA
     	RandomDataGenerator theRandomDataGenerator = new RandomDataGenerator();
     	for (int i = 0; i < theArraySize; i++)
     	{
-    		theArrayOfIntegers[i] = theRandomDataGenerator.nextInt(0, Integer.MAX_VALUE - 1);
+    		//theArrayOfIntegers[i] = theRandomDataGenerator.nextInt(0, Integer.MAX_VALUE - 1);
+    		theArrayOfIntegers[i] = theRandomDataGenerator.nextInt(0, 10);
     	}
     	
 		System.out.println("The array to sort: " + Arrays.toString(theArrayOfIntegers));

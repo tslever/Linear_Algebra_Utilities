@@ -38,14 +38,16 @@ public class MysterySort
     	RandomDataGenerator theRandomDataGenerator = new RandomDataGenerator();
     	for (int i = 0; i < theArraySize; i++)
     	{
-    		theArrayToSort[i] = theRandomDataGenerator.nextInt(0, Integer.MAX_VALUE - 1);
+    		//theArrayToSort[i] = theRandomDataGenerator.nextInt(0, Integer.MAX_VALUE - 1);
+    		theArrayToSort[i] = theRandomDataGenerator.nextInt(0, 10);
     	}
     	System.out.println("The array to sort: " + Arrays.toString(theArrayToSort));
     	TheInputAndOutputManager.printsWhetherOrNotIsSorted(theArrayToSort);
     	
     	
     	System.out.println("Executing mysterySort.");
-    	mysterySort(theArrayToSort);
+    	//mysterySort(theArrayToSort);
+    	bubbleSmallIntegersLeftThrough(theArrayToSort);
     	System.out.println("The array after sorting: " + Arrays.toString(theArrayToSort));    	
     	TheInputAndOutputManager.printsWhetherOrNotIsSorted(theArrayToSort);
     	System.out.println("mysterySort performed " + theNumberOfComparisons + " comparisons.");
@@ -73,11 +75,11 @@ public class MysterySort
     }
     
     
-    /** -----------------------------------------------
-     * mysterySort performs a mystery sort of an array.
+    /** ------------------------------------------------------------------
+     * mysterySort bubbles large elements right through the array to sort.
      * 
      * @param arr
-     ----------------------------------------------- */
+     ------------------------------------------------------------------ */
     
     public static void mysterySort(int[] arr)
     {
@@ -96,7 +98,48 @@ public class MysterySort
                	    arr[k]=hold;
             	}
          	}
+            
+    		System.out.println(
+				"\tThe array of integers after iteration " + i + " of Bubble Sort: " +
+				Arrays.toString(arr)
+			);
+            
       	}
+		
+    }
+    
+    
+    /** ------------------------------------------------------------------------------------
+     * bubbleSmallIntegersLeftThrough bubbles small integers left through the array to sort.
+     * 
+     * @param theArrayToSort
+     ------------------------------------------------------------------------------------ */
+    
+    public static void bubbleSmallIntegersLeftThrough(int[] theArrayToSort) {
+    	
+    	for (int i = 0; i < theArrayToSort.length - 1; i++) {
+    		
+    		for (int j = theArrayToSort.length - 1; j > i; j--) {
+    			
+    			if (theArrayToSort[j] < theArrayToSort[j - 1]) {
+    				
+    				int thePlaceholder = theArrayToSort[j];
+    				
+    				theArrayToSort[j] = theArrayToSort[j - 1];
+    				
+    				theArrayToSort[j - 1] = thePlaceholder;
+    				
+    			}
+    			
+    		}
+    		
+    		System.out.println(
+				"\tThe array of integers after iteration " + i + " of Bubble Sort: " +
+				Arrays.toString(theArrayToSort)
+			);
+    		
+    	}
+    	
     }
         
 }
