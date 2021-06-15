@@ -40,8 +40,8 @@ public class CollectionTTest
         theCollectionOfIntegers.print();
         System.out.println();
         
-        System.out.println("After removing all integers equal to 1:");
-        theCollectionOfIntegers.remove((Integer) 1);
+        int theNumberOfIntegersRemoved = theCollectionOfIntegers.remove((Integer) 1);
+        System.out.println("After removing " + theNumberOfIntegersRemoved + " integers equal to 1:");
         theCollectionOfIntegers.print();
         System.out.println();
         

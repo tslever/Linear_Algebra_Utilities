@@ -64,10 +64,14 @@ public class CollectionT<T> implements CollectionInterface<T>{
    
    public void add(T theElementToAdd, int theIndexAtWhichToAddTheElement) {
 	   
-	   if (theIndexAtWhichToAddTheElement < 0 || theIndexAtWhichToAddTheElement > size()) {
+	   if (theIndexAtWhichToAddTheElement < 0) {
 		   throw new AnInvalidIndexException(
                "Exception: add with an invalid index at which to add an element was requested."
            );
+	   }
+	   
+	   if (theIndexAtWhichToAddTheElement > size()) {
+		   add(theElementToAdd);
 	   }
 	   
 	   if (isFull()) {
@@ -179,7 +183,7 @@ public class CollectionT<T> implements CollectionInterface<T>{
    public T get(int theIndexOfTheElementToGet) {
 	   
 	   if (theIndexOfTheElementToGet < 0 || theIndexOfTheElementToGet >= size()) {
-		   throw new AnInvalidIndexException("Exception: get with an invalid index was requested.");
+		   return null;
 	   }
 	   
 	   return this.data[theIndexOfTheElementToGet];
