@@ -75,34 +75,23 @@ public class SortedCollectionT<T extends Comparable<T>> implements SortedCollect
 	   
 	   // TODO: Replace nodes with null references established by the isFull block.
 	   
-	   LLNode<T> thePreviousLinkedListNode = null;
-	   LLNode<T> theCurrentLinkedListNode = this.head;
-	   
-	   boolean aLinkedListNodeForTheElementHasBeenAdded = false;
-	   
-	   while (theCurrentLinkedListNode != null && !aLinkedListNodeForTheElementHasBeenAdded) {
-		   if (ele.compareTo(theCurrentLinkedListNode.getData()) <= 0) {
-			   LLNode<T> theLinkedListNodeForTheElement = new LLNode<T>(ele, theCurrentLinkedListNode);
-			   if (thePreviousLinkedListNode == null) {
-				   this.head = theLinkedListNodeForTheElement;
-			   }
-			   else {
-				   thePreviousLinkedListNode.setNext(theLinkedListNodeForTheElement);
-			   }
-			   aLinkedListNodeForTheElementHasBeenAdded = true;
-		   }
-		   
-		   thePreviousLinkedListNode = theCurrentLinkedListNode;
-		   theCurrentLinkedListNode = theCurrentLinkedListNode.getNext();
+	   if (this.head == null || ele.compareTo(this.head.getData()) <= 0) {
+		   LLNode<T> theLinkedListNodeForTheElement = new LLNode<T>(ele, this.head);
+		   this.head = theLinkedListNodeForTheElement;
 	   }
 	   
-	   if (!aLinkedListNodeForTheElementHasBeenAdded) {
-		   if (thePreviousLinkedListNode == null) {
-			   this.head = new LLNode<T>(ele);
+	   else {
+		   
+		   LLNode<T> theCurrentLinkedListNode = this.head;
+		   
+		   while ((theCurrentLinkedListNode.getNext() != null) &&
+				  (ele.compareTo(theCurrentLinkedListNode.getNext().getData()) > 0)) {
+			   theCurrentLinkedListNode = theCurrentLinkedListNode.getNext();
 		   }
-		   else {
-			   thePreviousLinkedListNode.setNext(new LLNode<T>(ele));
-		   }
+		   
+		   LLNode<T> theLinkedListNodeForTheElement = new LLNode<T>(ele, theCurrentLinkedListNode.getNext());
+		   theCurrentLinkedListNode.setNext(theLinkedListNodeForTheElement);
+		   
 	   }
 
    }
@@ -117,7 +106,7 @@ public class SortedCollectionT<T extends Comparable<T>> implements SortedCollect
 
        *** Enter your code below *** 
       */
-	   
+	  
 	  if (isEmpty()) {
 		  throw new ACollectionUnderflowException("Exception: remove for an empty collection requested.");
 	  }

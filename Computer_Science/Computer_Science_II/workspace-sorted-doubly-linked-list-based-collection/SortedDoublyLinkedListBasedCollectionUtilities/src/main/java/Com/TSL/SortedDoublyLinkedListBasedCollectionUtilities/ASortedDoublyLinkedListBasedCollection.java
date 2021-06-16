@@ -76,7 +76,7 @@ public class ASortedDoublyLinkedListBasedCollection<T extends Comparable<T>> {
 		}
 		
 		ADoublyLinkedListNode<T> theCurrentDoublyLinkedListNode = this.head;
-		while (theCurrentDoublyLinkedListNode.providesItsReferenceToTheNextDoublyLinkedListNode() != null) {
+		while (theCurrentDoublyLinkedListNode != null) {
 			if (theElementToRemove.equals(theCurrentDoublyLinkedListNode.providesItsData())) {
 				
 				theCurrentDoublyLinkedListNode
@@ -95,16 +95,6 @@ public class ASortedDoublyLinkedListBasedCollection<T extends Comparable<T>> {
 			
 			theCurrentDoublyLinkedListNode =
 				theCurrentDoublyLinkedListNode.providesItsReferenceToTheNextDoublyLinkedListNode();
-			
-		}
-		
-		if (theCurrentDoublyLinkedListNode != null) {
-			
-			theCurrentDoublyLinkedListNode
-			.providesItsReferenceToThePreviousDoublyLinkedListNode()
-			.setsItsReferenceToTheNextDoublyLinkedListNodeTo(
-				theCurrentDoublyLinkedListNode.providesItsReferenceToTheNextDoublyLinkedListNode()
-			);
 			
 		}
 		
