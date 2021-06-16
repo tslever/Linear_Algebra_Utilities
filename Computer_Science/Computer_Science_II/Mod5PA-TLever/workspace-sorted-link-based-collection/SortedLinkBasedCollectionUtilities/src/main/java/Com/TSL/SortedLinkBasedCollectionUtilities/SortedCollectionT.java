@@ -74,10 +74,9 @@ public class SortedCollectionT<T extends Comparable<T>> implements SortedCollect
 
 	   
 	   // TODO: Replace nodes with null references established by the isFull block.
-	   
+	   	   
 	   if (this.head == null || ele.compareTo(this.head.getData()) <= 0) {
-		   LLNode<T> theLinkedListNodeForTheElement = new LLNode<T>(ele, this.head);
-		   this.head = theLinkedListNodeForTheElement;
+		   this.head = new LLNode<T>(ele, this.head);
 	   }
 	   
 	   else {
