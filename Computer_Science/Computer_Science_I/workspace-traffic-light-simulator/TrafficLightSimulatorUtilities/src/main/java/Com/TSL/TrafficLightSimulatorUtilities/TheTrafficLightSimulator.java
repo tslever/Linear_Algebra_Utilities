@@ -18,15 +18,16 @@ import javafx.stage.Stage;
  * @since 06/18/21
  ************************************************************************************************************** */
 
-public class TheTrafficLightSimulator extends Application {
-    
+public class TheTrafficLightSimulator extends Application
+{
 	
     /** ------------------------------------------------------------------------------
      * start mobilizes to a stage components that interact with a user and each other.
      ------------------------------------------------------------------------------ */
 
     @Override
-    public void start (Stage stage) {
+    public void start (Stage stage)
+    {
 
         ATrafficLight theTrafficLight = new ATrafficLight (TheConfigurations.THE_WIDTH_OF_THE_APP);
         FlowPane theFlowPane = new FlowPane (theTrafficLight, new ATrafficLightStateAdvancingButton(theTrafficLight));
@@ -51,7 +52,8 @@ public class TheTrafficLightSimulator extends Application {
      * @param args
     ------------------------------------------------------------------------------------------------------------ */
 
-    public static void main (String[] args) {
+    public static void main (String[] args)
+    {
 
         launch();
 

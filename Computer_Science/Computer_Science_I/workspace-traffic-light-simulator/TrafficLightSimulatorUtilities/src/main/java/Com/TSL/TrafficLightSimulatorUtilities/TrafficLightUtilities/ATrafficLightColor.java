@@ -9,7 +9,8 @@ package Com.TSL.TrafficLightSimulatorUtilities.TrafficLightUtilities;
  * @since 06/18/21
  ****************************************************************** */
 
-public enum ATrafficLightColor {
+public enum ATrafficLightColor
+{
 
     GREEN,
     YELLOW,

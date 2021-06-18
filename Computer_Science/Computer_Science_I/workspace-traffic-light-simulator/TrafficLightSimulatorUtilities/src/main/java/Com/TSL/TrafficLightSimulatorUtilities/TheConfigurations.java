@@ -13,7 +13,8 @@ import javafx.stage.Screen;
  * @since 06/18/21
  ******************************************************************************************************************** */
 
-public class TheConfigurations {
+public class TheConfigurations
+{
 
     private static final Rectangle2D THE_WIDTH_AND_HEIGHT_OF_THE_SCREEN = Screen.getPrimary().getBounds();
     public static final double THE_WIDTH_OF_THE_APP = THE_WIDTH_AND_HEIGHT_OF_THE_SCREEN.getWidth() - 25.0;

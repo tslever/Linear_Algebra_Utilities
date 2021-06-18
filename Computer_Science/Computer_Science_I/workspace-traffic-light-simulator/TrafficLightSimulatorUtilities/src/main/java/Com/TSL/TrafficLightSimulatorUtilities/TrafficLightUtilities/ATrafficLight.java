@@ -17,8 +17,8 @@ import javafx.scene.shape.Rectangle;
  * @since 06/18/21
  ****************************************************************** */
 
-public class ATrafficLight extends Group {
-
+public class ATrafficLight extends Group
+{
     
     private ATrafficLightColor trafficLightColor;
     private ArrayList <Lamp> arrayListOfLamps;
@@ -30,7 +30,8 @@ public class ATrafficLight extends Group {
      * traffic light's color, and turns the corresponding lamp on.
      ------------------------------------------------------------------------------------------------------------- */
     
-    public ATrafficLight (double theWidthOfItsParent) {
+    public ATrafficLight (double theWidthOfItsParent)
+    {
              
         double theWidthOfTheTrafficLight = theWidthOfItsParent / 4.0;
         double theHeightOfTheTrafficLight = theWidthOfTheTrafficLight * 2.0;      
@@ -85,7 +86,8 @@ public class ATrafficLight extends Group {
      * advancesItsTrafficLightColor advances the traffic-light color of this traffic light.
      ----------------------------------------------------------------------------------- */
     
-    public void advancesItsTrafficLightColor (ActionEvent event) {
+    public void advancesItsTrafficLightColor (ActionEvent event)
+    {
         
         this.arrayListOfLamps.get (this.trafficLightColor.ordinal()).turnsOff();
         

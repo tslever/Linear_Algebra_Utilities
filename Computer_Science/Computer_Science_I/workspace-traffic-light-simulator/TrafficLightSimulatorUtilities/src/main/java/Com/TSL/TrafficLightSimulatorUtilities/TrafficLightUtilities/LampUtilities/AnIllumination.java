@@ -9,7 +9,8 @@ package Com.TSL.TrafficLightSimulatorUtilities.TrafficLightUtilities.LampUtiliti
  * @since 06/18/21
  ****************************************************************** */
 
-public enum AnIllumination {
+public enum AnIllumination
+{
 
     OFF,
     ON

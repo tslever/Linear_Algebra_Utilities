@@ -14,9 +14,9 @@ import javafx.scene.control.Button;
  * @since 06/18/21
  **************************************************************************************************************** */
 
-public class ATrafficLightStateAdvancingButton extends Button {
+public class ATrafficLightStateAdvancingButton extends Button
+{
 
-    
     private ATrafficLight trafficLight;
     
     
@@ -28,7 +28,8 @@ public class ATrafficLightStateAdvancingButton extends Button {
      * @param theTrafficLightToUse
      ----------------------------------------------------------------------------------------------------------- */
     
-    public ATrafficLightStateAdvancingButton (ATrafficLight theTrafficLightToUse) {
+    public ATrafficLightStateAdvancingButton (ATrafficLight theTrafficLightToUse)
+    {
         
         this.trafficLight = theTrafficLightToUse;
         

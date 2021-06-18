@@ -13,8 +13,8 @@ import javafx.scene.shape.Circle;
  * @since 06/18/21
  *********************************************************************************************************** */
 
-public class Lamp extends Circle {
-    
+public class Lamp extends Circle
+{
     
     private Color colorWhenOff;
     private Color colorWhenOn;
@@ -33,7 +33,8 @@ public class Lamp extends Circle {
      * @param theColorToUseWhenOn
      ----------------------------------------------------------------------------------------------------------------- */
     
-    public Lamp (double centerX, double centerY, double radius, Color theColorToUseWhenOff, Color theColorToUseWhenOn) {
+    public Lamp (double centerX, double centerY, double radius, Color theColorToUseWhenOff, Color theColorToUseWhenOn)
+    {
         
         super (centerX, centerY, radius, theColorToUseWhenOff);
         
@@ -48,7 +49,8 @@ public class Lamp extends Circle {
      * turnsOff turns this lamp off by changing this lamp's illumination and fill color.
      -------------------------------------------------------------------------------- */
     
-    public void turnsOff() {
+    public void turnsOff()
+    {
         
         if (this.illumination == AnIllumination.OFF) {
             throw new AnInvalidIlluminationException ("A lamp that was off tried to turn off.");
@@ -64,7 +66,8 @@ public class Lamp extends Circle {
      * turnsOn turns this lamp on by changing this lamp's illumination and fill color.
      ------------------------------------------------------------------------------ */
     
-    public void turnsOn() {
+    public void turnsOn()
+    {
         
         if (this.illumination == AnIllumination.ON) {
             throw new AnInvalidIlluminationException ("A lamp that was on tried to turn on.");

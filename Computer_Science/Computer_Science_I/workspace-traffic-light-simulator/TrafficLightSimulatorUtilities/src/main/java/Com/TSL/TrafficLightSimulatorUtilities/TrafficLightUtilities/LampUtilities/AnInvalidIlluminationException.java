@@ -10,8 +10,8 @@ package Com.TSL.TrafficLightSimulatorUtilities.TrafficLightUtilities.LampUtiliti
  * @since 06/18/21
  ***************************************************************************************************************** */
 
-public class AnInvalidIlluminationException extends RuntimeException {
-
+public class AnInvalidIlluminationException extends RuntimeException
+{
     
     /** --------------------------------------------------------------------------------------------------------------
      * AnInvalidIlluminationException(String message) is the one-parameter constructor for
@@ -20,7 +20,8 @@ public class AnInvalidIlluminationException extends RuntimeException {
      * @param message
      -------------------------------------------------------------------------------------------------------------- */
     
-    public AnInvalidIlluminationException (String message) {
+    public AnInvalidIlluminationException (String message)
+    {
         
         super (message);
         
