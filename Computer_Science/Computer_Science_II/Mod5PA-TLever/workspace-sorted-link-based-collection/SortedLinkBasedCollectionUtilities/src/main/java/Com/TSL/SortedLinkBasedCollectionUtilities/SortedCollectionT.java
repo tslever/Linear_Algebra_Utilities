@@ -49,6 +49,13 @@ public class SortedCollectionT<T extends Comparable<T>> implements SortedCollect
        */
    
 	   
+	   // When duplicates are not allowed
+	   
+	   if (find(ele) != null) {
+		   throw new AnAddingDuplicateElementException("Adding a duplicate element was requested.");
+	   }
+	   
+	   
 	   // no duplication is allowed, so just <, not <=
 	   
 	   if (this.head == null || ele.compareTo(this.head.getData()) < 0) {

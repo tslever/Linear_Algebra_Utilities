@@ -14,7 +14,7 @@ class ACollectionUnderflowException extends RuntimeException {
 
   /**
    * ACollectionUnderflowException() is a conventional zero-parameter constructor for CollectionUnderflowException,
-   * which calls Exception's zero-parameter constructor.
+   * which calls RuntimeException's zero-parameter constructor.
    */
 
   public ACollectionUnderflowException() {
@@ -24,7 +24,7 @@ class ACollectionUnderflowException extends RuntimeException {
 
   /**
    * ACollectionUnderflowException(String message) is a one-parameter constructor for ACollectionUnderflowException,
-   * which passes an error message to Exception's one-parameter constructor with a message parameter.
+   * which passes an error message to RuntimeException's one-parameter constructor with a message parameter.
    * 
    * @param message
    */
