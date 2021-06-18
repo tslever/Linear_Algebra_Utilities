@@ -47,35 +47,11 @@ public class SortedCollectionT<T extends Comparable<T>> implements SortedCollect
 
        *** Enter your code below *** 
        */
-
+   
 	   
-	   if (isFull()) {
-		   
-		   // double the array size. What array size?
-		   // The only way I know to double the size (i.e., the number of elements) in a linked list based collection
-		   // is to append a linked list of <size> nodes to the collection. Each of these subsequent nodes will have a
-	       // null reference to an object of type T.
-		   
-		   LLNode<T> theCurrentLinkedListNode = this.head;
-		   
-		   if (theCurrentLinkedListNode != null) {
-			   LLNode<T> theLinkedListToAppend = new LLNode<T>(null, null);
-			   
-			   while (theCurrentLinkedListNode.getNext() != null) {
-				   LLNode<T> theLinkedListNodeToAdd = new LLNode<T>(null, theLinkedListToAppend);
-				   theLinkedListToAppend = theLinkedListNodeToAdd;
-				   theCurrentLinkedListNode = theCurrentLinkedListNode.getNext();
-			   }
-			   
-			   theCurrentLinkedListNode.setNext(theLinkedListToAppend);
-		   }
-		      
-	   }
-
+	   // no duplication is allowed, so just <, not <=
 	   
-	   // TODO: Replace nodes with null references established by the isFull block.
-	   	   
-	   if (this.head == null || ele.compareTo(this.head.getData()) <= 0) {
+	   if (this.head == null || ele.compareTo(this.head.getData()) < 0) {
 		   this.head = new LLNode<T>(ele, this.head);
 	   }
 	   
@@ -87,9 +63,15 @@ public class SortedCollectionT<T extends Comparable<T>> implements SortedCollect
 				  (ele.compareTo(theCurrentLinkedListNode.getNext().getData()) > 0)) {
 			   theCurrentLinkedListNode = theCurrentLinkedListNode.getNext();
 		   }
+
+		 // if the value is the same, do not add to the list, b/c duplication is not allowed
 		   
-		   LLNode<T> theLinkedListNodeForTheElement = new LLNode<T>(ele, theCurrentLinkedListNode.getNext());
-		   theCurrentLinkedListNode.setNext(theLinkedListNodeForTheElement);
+         if (!ele.equals(theCurrentLinkedListNode.getData())) {
+
+            LLNode<T> theLinkedListNodeForTheElement = new LLNode<T>(ele, theCurrentLinkedListNode.getNext());
+            theCurrentLinkedListNode.setNext(theLinkedListNodeForTheElement);
+
+         }
 		   
 	   }
 
@@ -110,25 +92,44 @@ public class SortedCollectionT<T extends Comparable<T>> implements SortedCollect
 		  throw new ACollectionUnderflowException("Exception: remove for an empty collection requested.");
 	  }
 	  
-	  while ((this.head != null) && (ele.equals(this.head.getData()))) {
-		  this.head = this.head.getNext();
-	  }
-	  
-	  if (this.head == null) {
+	  if (find(ele) == null) {
 		  return;
 	  }
+	  //you may call find method to determine if the ele exists or not before removing
+          //**** it is OK w/o using the method, but from software engineering pespective, it is a good practice to use given method
+
+	  // For removing one element equal to the provided element from the collection
+	  if (ele.equals(this.head.getData())) {
+		  this.head = this.head.getNext();
+		  return;
+	  }
+	  
+	  // For removing all elements equal to the provided element from the collection
+	  //while ((this.head != null) && (ele.equals(this.head.getData()))) {
+		//  this.head = this.head.getNext(); 
+        //          //**** need to return from here after removing the first ele on the list 
+	  //}
+	  
+	  //if (this.head == null) {
+		//  return;
+	  //}
 	  
 	  LLNode<T> thePreviousLinkedListNode = this.head;
 	  LLNode<T> theCurrentLinkedListNode = this.head.getNext();
 	  
 	  while (theCurrentLinkedListNode != null) {
 		  if (ele.equals(theCurrentLinkedListNode.getData())) {
-			  thePreviousLinkedListNode.setNext(theCurrentLinkedListNode.getNext());
+			  thePreviousLinkedListNode.setNext(theCurrentLinkedListNode.getNext());//**** need break;
+			  break; // For removing one element equal to the provided element from the collection
 		  }
 		  else {
 			  thePreviousLinkedListNode = theCurrentLinkedListNode;
+			  // For removing one element equal to the provided element from the collection
+			  theCurrentLinkedListNode = theCurrentLinkedListNode.getNext();
 		  }
-		  theCurrentLinkedListNode = theCurrentLinkedListNode.getNext();
+		  // For removing all elements equal to the provided element from the collection
+		  //theCurrentLinkedListNode = theCurrentLinkedListNode.getNext(); //**** it is OK, it would be more readable if it is placed inside else
+                                                                                 //
 	  }
 
    }
