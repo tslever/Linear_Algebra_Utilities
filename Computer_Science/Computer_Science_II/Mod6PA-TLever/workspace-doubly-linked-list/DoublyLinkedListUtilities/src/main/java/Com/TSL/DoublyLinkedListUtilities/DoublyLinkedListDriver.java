@@ -1,11 +1,21 @@
 package Com.TSL.DoublyLinkedListUtilities;
 
+
 /**
- * Hello world!
+ * DoublyLinkedListDriver encapsulates the entry point of this program, which tests creation and use of a doubly linked
+ * list.
  *
  */
+
 public class DoublyLinkedListDriver 
 {
+	
+	
+	/**
+	 * main encapsulates the entry point of this program, which tests creation and use of a doubly linked list.
+	 * 
+	 * @param args
+	 */
 	
     public static void main( String[] args )
     {

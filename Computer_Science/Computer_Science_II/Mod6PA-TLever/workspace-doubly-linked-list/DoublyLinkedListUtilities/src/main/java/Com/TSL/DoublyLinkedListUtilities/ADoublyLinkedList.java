@@ -1,7 +1,17 @@
 package Com.TSL.DoublyLinkedListUtilities;
 
 
-public class ADoublyLinkedList<T> {
+/**
+ * ADoublyLinkedList represents the structure for a doubly linked list.
+ * 
+ * @author Tom Lever
+ * @version 1.0
+ * @since 06/24/21
+ *
+ * @param <T>
+ */
+
+public class ADoublyLinkedList<T extends Comparable<T>> {
 
 	
 	private ADoublyLinkedListNode<T> head;
@@ -9,6 +19,12 @@ public class ADoublyLinkedList<T> {
 	private ADoublyLinkedListNode<T> tail;
 	private int numberOfElements;
 	
+	
+	/**
+	 * ADoublyLinkedList() is the zero-parameter constructor for ADoublyLinkedList, which sets this list's reference
+	 * to its first node to null, sets this list's reference to its current node to null, sets this list's reference
+	 * to its last node to null, and sets this list's number of elements to 0.
+	 */
 	
 	public ADoublyLinkedList() {
 		
@@ -19,6 +35,11 @@ public class ADoublyLinkedList<T> {
 		
 	}
 	
+	
+	/**
+	 * addsToItsHead adds a provided element as the first element of this list.
+	 * @param theElement
+	 */
 	
 	public void addsToItsHead(T theElement) {
 		
@@ -45,6 +66,11 @@ public class ADoublyLinkedList<T> {
 	}
 	
 	
+	/**
+	 * addsToItsTail adds a provided element as the last element of this list.
+	 * @param theElement
+	 */
+	
 	public void addsToItsTail(T theElement) {
 		
 		if (theElement == null) {
@@ -70,12 +96,24 @@ public class ADoublyLinkedList<T> {
 	}
 	
 	
+	/**
+	 * providesItsNumberOfElements provides this list's number of elements.
+	 * @return
+	 */
+	
 	public int providesItsNumberOfElements() {
 		
 		return this.numberOfElements;
 		
 	}
 	
+	
+	/**
+	 * insertsAtItsMidpoint inserts a provided element into the middle of this list. If the number of elements in this
+	 * list is odd, the provided element is inserted before the middle element.
+	 * 
+	 * @param theElement
+	 */
 	
 	public void insertsAtItsMidpoint(T theElement) {
 		
@@ -129,6 +167,10 @@ public class ADoublyLinkedList<T> {
 	}
 	
 	
+	/**
+	 * removesTheNodeAtItsHead removes the first node of this doubly linked list.
+	 */
+	
 	public void removesTheNodeAtItsHead() {
 		
 		if (this.head == null) {
@@ -142,12 +184,23 @@ public class ADoublyLinkedList<T> {
 	}
 	
 	
+	/**
+	 * setsItsCurrentNodeToItsTail sets the reference to the current node of this list to the reference to the last
+	 * node of this list. 
+	 */
+	
 	public void setsItsCurrentNodeToItsTail() {
 		
 		this.currentDoublyLinkedListNode = this.tail;
 		
 	}
 	
+	
+	/**
+	 * providesTheElementOfItsCurrentNode provides the element of the current node of this list.
+	 * 
+	 * @return
+	 */
 	
 	public T providesTheElementOfItsCurrentNode() {
 		
@@ -162,6 +215,11 @@ public class ADoublyLinkedList<T> {
 		
 	}
 	
+	
+	/**
+	 * movesItsCurrentNodeAwayFromItsTailAndTowardsItsHead resets the reference to the current node of this list
+	 * as the reference to the node before the current node of this list.
+	 */
 	
 	public void movesItsCurrentNodeAwayFromItsTailAndTowardsItsHead() {
 		
@@ -179,6 +237,11 @@ public class ADoublyLinkedList<T> {
 		
 	}
 	
+	
+	/**
+	 * removesTheNodeAtItsMidpoint removes the node at the midpoint of this list. If the number of nodes in this list
+	 * is even, the node pointed to by the middle link is removed.
+	 */
 	
 	public void removesTheNodeAtItsMidpoint() {
 		
@@ -209,6 +272,13 @@ public class ADoublyLinkedList<T> {
 	}
 	
 	
+	/**
+	 * finds provides the first element in this list that equals a provided element.
+	 * 
+	 * @param theElement
+	 * @return
+	 */
+	
 	public T finds(T theElement) {
 		
 		ADoublyLinkedListNode<T> theCurrentDoublyLinkedListNode = this.head;
@@ -224,6 +294,10 @@ public class ADoublyLinkedList<T> {
 		
 	}
 	
+	
+	/**
+	 * toString provides a string representation of this list.
+	 */
 	
 	public String toString() {
 		
@@ -242,12 +316,33 @@ public class ADoublyLinkedList<T> {
 	}
 	
 	
+	/**
+	 * ADoublyLinkedListNode represents the structure for a doubly linked list node.
+	 * 
+	 * @author Tom Lever
+	 * @version 1.0
+	 * @since 06/24/21
+	 *
+	 * @param <T>
+	 */
+	
 	private class ADoublyLinkedListNode<T> {
 		
 		private T data;
 		private ADoublyLinkedListNode<T> referenceToThePreviousNode;
 		private ADoublyLinkedListNode<T> referenceToTheNextNode;
 		
+		
+		/**
+		 * ADoublyLinkedListNode(...) is the three parameter constructor for ADoublyLinkedListNode, which sets this
+		 * node's data to theDataToUse, this node's reference to the previous node to
+		 * theReferenceToThePreviousNodeToUse, and this node's reference to the next node to
+		 * theReferenceToTheNextNodeToUse.
+		 * 
+		 * @param theDataToUse
+		 * @param theReferenceToThePreviousNodeToUse
+		 * @param theReferenceToTheNextNodeToUse
+		 */
 		
 		public ADoublyLinkedListNode(
 			T theDataToUse,
@@ -262,25 +357,57 @@ public class ADoublyLinkedList<T> {
 		}
 		
 		
+		/**
+		 * setsItsReferenceToThePreviousNodeTo sets this node's reference to the previous node to
+		 * theReferenceToThePreviousNodeToUse
+		 * 
+		 * @param theReferenceToThePreviousNodeToUse
+		 */
+		
 		public void setsItsReferenceToThePreviousNodeTo(ADoublyLinkedListNode<T> theReferenceToThePreviousNodeToUse) {
 			this.referenceToThePreviousNode = theReferenceToThePreviousNodeToUse;
 		}
 		
 		
+		/**
+		 * setsItsReferenceToTheNextNodeTo sets this node's reference to the next node to
+		 * theReferenceToTheNextNodeToUse.
+		 * 
+		 * @param theReferenceToTheNextNodeToUse
+		 */
+		
 		public void setsItsReferenceToTheNextNodeTo(ADoublyLinkedListNode<T> theReferenceToTheNextNodeToUse) {
 			this.referenceToTheNextNode = theReferenceToTheNextNodeToUse;
 		}
+
 		
+		/**
+		 * providesItsData provides this node's data.
+		 * 
+		 * @return
+		 */
 		
 		public T providesItsData() {
 			return this.data;
 		}
 
 		
+		/**
+		 * providesItsReferenceToThePreviousNode provides this node's reference to the previous node.
+		 * 
+		 * @return
+		 */
+		
 		public ADoublyLinkedListNode<T> providesItsReferenceToThePreviousNode() {
 			return this.referenceToThePreviousNode;
 		}
 		
+		
+		/**
+		 * providesItsReferenceToTheNextNode provides this node's reference to the next node.
+		 * 
+		 * @return
+		 */
 		
 		public ADoublyLinkedListNode<T> providesItsReferenceToTheNextNode() {
 			return this.referenceToTheNextNode;
