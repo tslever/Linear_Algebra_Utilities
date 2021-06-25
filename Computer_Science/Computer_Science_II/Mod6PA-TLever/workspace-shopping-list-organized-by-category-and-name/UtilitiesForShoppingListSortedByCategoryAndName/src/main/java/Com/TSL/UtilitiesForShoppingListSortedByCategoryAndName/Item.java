@@ -1,9 +1,6 @@
 package Com.TSL.UtilitiesForShoppingListSortedByCategoryAndName;
 
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import org.apache.commons.math3.util.Precision;
 
 

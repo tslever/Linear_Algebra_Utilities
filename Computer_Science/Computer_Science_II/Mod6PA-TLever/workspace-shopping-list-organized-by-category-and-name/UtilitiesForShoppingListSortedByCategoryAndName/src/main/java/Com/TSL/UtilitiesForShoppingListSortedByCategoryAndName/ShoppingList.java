@@ -4,8 +4,11 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * Hello world!
- *
+ * ShoppingList represents the structure for a shopping list organized by category and then by name.
+ * 
+ * @author Tom Lever
+ * @version 1.0
+ * @since 06/24/21
  */
 
 public class ShoppingList 
@@ -15,6 +18,11 @@ public class ShoppingList
 	int numberOfUniqueItems;
 	
 	
+	/**
+	 * ShoppingList() is the zero-parameter constructor for ShoppingList, which sets this list's reference to its first
+	 * node to null, and sets this list's number of unique items to 0.
+	 */
+	
 	public ShoppingList() {
 		
 		this.head = null;
@@ -23,20 +31,40 @@ public class ShoppingList
 	}
 	
 	
+	/**
+	 * isEmpty indicates whether or not this list is empty.
+	 * @return
+	 */
+	
     public boolean isEmpty() {
     	return (this.head == null);
     }
     
+    
+    /**
+     * isFull indicates whether or not this list is full.
+     * @return
+     */
     
     public boolean isFull() {
     	return false;
     }
     
     
+    /**
+     * size provides this list's number of unique items.
+     * @return
+     */
+    
     public int size() {
     	return this.numberOfUniqueItems;
     }
     
+    
+    /**
+     * totalItems provides the number of total items in this list, considering both unique entries and their quantities.
+     * @return
+     */
     
     public int totalItems() {
     	
@@ -53,6 +81,11 @@ public class ShoppingList
     }
     
     
+    /**
+     * grandTotal provides the grand total price of all items on the shopping list.
+     * @return
+     */
+    
     public double grandTotal() {
     	
     	double theTotalOfAllSubtotals = 0.0;
@@ -67,6 +100,10 @@ public class ShoppingList
     	
     }
     
+    
+    /**
+     * printNames outputs the a representation of an array of the names of the unique items in this list.
+     */
     
     public void printNames() {
     	
@@ -94,6 +131,15 @@ public class ShoppingList
     }
     
     
+    /**
+     * aStringOfSpacesBasedOn provides a string of spaces based on a string and a width of a column in a table,
+     * which will be used to space string values into their appropriate cells.
+     *     
+     * @param theString
+     * @param theWidthOfTheColumn
+     * @return
+     */
+    
     private String aStringOfSpacesBasedOn(String theString, int theWidthOfTheColumn) {
     	
     	String theStringOfSpaces = "";
@@ -107,6 +153,14 @@ public class ShoppingList
     }
     
     
+    /**
+     * aStringRepresentationOf provides a string representation of a United-Stated monetary amount, for the purpose
+     * of aligning all subtotals.
+     * 
+     * @param theUsMonetaryAmount
+     * @return
+     */
+    
     private String aStringRepresentationOf(double theUsMonetaryAmount) {
     	
     	NumberFormat theNumberFormat = NumberFormat.getInstance(Locale.US);
@@ -116,6 +170,10 @@ public class ShoppingList
     	
     }
     
+    
+    /**
+     * print outputs a representation of this shopping list to the standard output stream.
+     */
     
     public void print() {
     	
@@ -168,6 +226,13 @@ public class ShoppingList
     }
     
     
+    /**
+     * providesTheFirstInstanceOf provides the first instance of a provided item in the shopping list.
+     * 
+     * @param theItem
+     * @return
+     */
+    
     public Item providesTheFirstInstanceOf(Item theItem) {
     	
     	ADoublyLinkedListNode<Item> theCurrentDoublyLinkedListNode = this.head;
@@ -183,6 +248,12 @@ public class ShoppingList
     	
     }
     
+    
+    /**
+     * insert inserts a provided item into the shopping list.
+     * 
+     * @param item
+     */
     
     public void insert(Item item) {
     	
@@ -236,6 +307,12 @@ public class ShoppingList
     	
     }
     
+    
+    /**
+     * remove removes the first instance of a provided item from the list.
+     * 
+     * @param item
+     */
     
     public void remove(Item item) {
     	
