@@ -10,7 +10,7 @@ package Com.TSL.LineEditorUtilities;
  * @since 06/26/21
  */
 
-public class AnAppendsStringException extends Exception {
+public class AnAppendsStringException extends RuntimeException {
 
 	
 	/**

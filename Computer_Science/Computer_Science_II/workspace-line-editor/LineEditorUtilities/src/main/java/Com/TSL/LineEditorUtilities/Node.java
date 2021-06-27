@@ -2,32 +2,32 @@ package Com.TSL.LineEditorUtilities;
 
 
 /**
- * A SinglyLinkedListNode represents the structure for a singly linked list node.
+ * Node represents the structure for a singly linked list node.
  * 
  * @author Tom Lever
  * @version 1.0
- * @since 06/26/21
+ * @since 06/27/21
  *
  * @param <T>
  */
 
-public class ASinglyLinkedListNode<T> {
+public class Node<T> {
 
 	
 	private T data;
-	private ASinglyLinkedListNode<T> referenceToTheNextNode;
+	private Node<T> referenceToTheNextNode;
 	
 	
 	/**
-	 * ASinglyLinkedListNode(T theDataToUse, ASinglyLinkedListNode<T> theReferenceToTheNextNodeToUse) is the
-	 * two-parameter constructor for ASinglyLinkedListNode, which sets this node's data to theDataToUse and sets this
-	 * node's reference to the next node to theReferenceToTheNextNodeToUse.
+	 * Node(T theDataToUse, Node<T> theReferenceToTheNextNodeToUse) is the two-parameter constructor for Node, which
+	 * sets this node's data to theDataToUse and sets this node's reference to the next node to
+	 * theReferenceToTheNextNodeToUse.
 	 * 
 	 * @param theDataToUse
 	 * @param theReferenceToTheNextNodeToUse
 	 */
 	
-	public ASinglyLinkedListNode(T theDataToUse, ASinglyLinkedListNode<T> theReferenceToTheNextNodeToUse) {
+	public Node(T theDataToUse, Node<T> theReferenceToTheNextNodeToUse) {
 		
 		this.data = theDataToUse;
 		this.referenceToTheNextNode = theReferenceToTheNextNodeToUse;
@@ -41,7 +41,7 @@ public class ASinglyLinkedListNode<T> {
 	 * @param theReferenceToTheNextNodeToUse
 	 */
 	
-	public void setsItsReferenceToTheNextNodeTo(ASinglyLinkedListNode<T> theReferenceToTheNextNodeToUse) {
+	public void setsItsReferenceToTheNextNodeTo(Node<T> theReferenceToTheNextNodeToUse) {
 		this.referenceToTheNextNode = theReferenceToTheNextNodeToUse;
 	}
 	
@@ -63,7 +63,7 @@ public class ASinglyLinkedListNode<T> {
 	 * @return
 	 */
 	
-	public ASinglyLinkedListNode<T> providesItsReferenceToTheNextNode() {
+	public Node<T> providesItsReferenceToTheNextNode() {
 		return this.referenceToTheNextNode;
 	}
 	

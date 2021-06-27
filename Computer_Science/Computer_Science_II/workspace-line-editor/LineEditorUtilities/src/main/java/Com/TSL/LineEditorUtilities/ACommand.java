@@ -2,7 +2,7 @@ package Com.TSL.LineEditorUtilities;
 
 
 /**
- * ACommand represents the structure for a command that manipulates text document(s).
+ * ACommand represents the structure for a command related to file-manipulation and/or line-editing functionality.
  * 
  * @author Tom Lever
  * @version 1.0
@@ -69,6 +69,13 @@ public class ACommand implements Comparable<ACommand> {
 	}
 	
 	
+	/**
+	 * providesItsEncapsulatorForEdit provides the encapsulator for a file-manipulation or line-editing method
+	 * associated with this command.
+	 * 
+	 * @return
+	 */
+	
 	public AnEncapsulatorForEdit providesItsEncapsulatorForEdit() {
 		return this.encapsulatorForEdit;
 	}
@@ -84,6 +91,5 @@ public class ACommand implements Comparable<ACommand> {
 		return this.name + ": " + this.text;
 		
 	}
-	
 	
 }
