@@ -21,8 +21,6 @@ public class AnEncapsulatorForClearBuffer extends AnEncapsulatorForEdit {
 		
 		LineEditor.bufferOfStrings.empty();
 		
-		System.out.println("The line editor's buffer of strings was cleared.");
-		
 	}
 	
 }

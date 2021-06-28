@@ -59,7 +59,16 @@ public class TheCommandMenuGenerator {
     	));
     	
 //theCommandMenu.inserts(new ACommand("Insert line", "insert <line number>"));
-//theCommandMenu.inserts(new ACommand("Load file", "load_file_at <filename> <append option (1: append, 0: new list)>"));
+    	
+    	// On receiving command "load", the line editor clears its buffer of strings if an append / overwrite option is
+    	// false, loads the file at the provided path, and appends the lines in that file to the line editor's buffer
+    	// of strings.
+    	commandMenu.inserts(new ACommand(
+			"Load lines from a file into the line editor's buffer of strings",
+			"load <path> <append / overwrite option>",
+			new AnEncapsulatorForLoadFile()
+		));
+			
 //theCommandMenu.inserts(new ACommand("Menu", "menu"));
     	
     	// On receiving command "p", the line editor outputs all lines in its buffer of strings, along with their
@@ -77,7 +86,7 @@ public class TheCommandMenuGenerator {
     	// path.
     	commandMenu.inserts(new ACommand(
     		"Save the lines in the line editor's buffer of strings to a file",
-    		"save <filename>",
+    		"save <path>",
     		new AnEncapsulatorForSaveLines())
     	);
     	

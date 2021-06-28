@@ -19,12 +19,12 @@ public class AnEncapsulatorForSaveLines extends AnEncapsulatorForEdit {
 	
 	public void edit(String[] theArrayOfArguments) {
 		
-		String theFilename = theArrayOfArguments[0];
+		String thePath = theArrayOfArguments[0];
 		
-		LineEditor.bufferOfStrings.save(theFilename);
+		LineEditor.bufferOfStrings.save(thePath);
 		
 		System.out.println(
-			"The lines in the line editor's buffer of strings were saved to a file at " + theFilename + "."
+			"The lines in the line editor's buffer of strings were saved to a file at " + thePath + "."
 		);
 		
 	}

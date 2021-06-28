@@ -70,7 +70,7 @@ public class ACommand implements Comparable<ACommand> {
 	
 	
 	/**
-	 * providesItsEncapsulatorForEdit provides the encapsulator for a file-manipulation or line-editing method
+	 * providesItsEncapsulatorForEdit provides the encapsulator for a file-manipulation and/or line-editing method
 	 * associated with this command.
 	 * 
 	 * @return

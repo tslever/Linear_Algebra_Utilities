@@ -72,6 +72,31 @@ public class AnInputManager {
 				.edit(null);
 				break;
 				
+			case "load":
+				if (theArrayOfComponentsOfTheCommand.length < 3) {
+					System.out.println(
+						"An input manager received command \"load\" without a path and without an append / " +
+						"overwrite option.");
+					continue;
+				}
+				
+				if (!theArrayOfComponentsOfTheCommand[2].equals("true") &&
+					!theArrayOfComponentsOfTheCommand[2].equals("false")) {
+					System.out.println(
+						"An input manager received command \"load\" with an invalid append / overwrite option"
+					);
+				}
+				
+				theCommandMenu
+				.providesTheFirstInstanceOf(new ACommand(
+					"Load lines from a file into the line editor's buffer of strings",
+					"load <path> <append / overwrite option>",
+					null
+				))
+				.providesItsEncapsulatorForEdit()
+				.edit(new String[] {theArrayOfComponentsOfTheCommand[1], theArrayOfComponentsOfTheCommand[2]});
+				break;
+				
 			case "p":
 				theCommandMenu
 				.providesTheFirstInstanceOf(new ACommand("Print lines in the line editor's buffer", "p", null))
@@ -81,13 +106,13 @@ public class AnInputManager {
 
 			case "save":
 				if (theArrayOfComponentsOfTheCommand.length < 2) {
-					System.out.println("An input manager received command \"save\" without a filename.");
+					System.out.println("An input manager received command \"save\" without a path.");
 					continue;
 				}
 				
 				theCommandMenu
 				.providesTheFirstInstanceOf(
-					new ACommand("Save the lines in the line editor's buffer of strings to a file", "save <filename>", null)
+					new ACommand("Save the lines in the line editor's buffer of strings to a file", "save <path>", null)
 				)
 				.providesItsEncapsulatorForEdit()
 				.edit(new String[] {theArrayOfComponentsOfTheCommand[1]});
@@ -109,29 +134,17 @@ public class AnInputManager {
 	
 	
 	/**
-	 * loadsAnyFileSpecifiedByTheFirstArgumentIn appends the lines 
+	 * loadsTheFileAt appends the lines of the file at a provided path into the line editor's buffer of strings.
 	 * 
 	 * @param args
 	 * @throws AnInvalidCharacterException
 	 * @throws IOException
 	 */
 	
-	public void loadsAnyFileSpecifiedByTheFirstArgumentIn(String[] args)
-		throws ABufferOfStringsIsNotEmptyException, AnInvalidCharacterException, IOException {
+	public static void loadsTheFileAt(String thePath) throws AnInvalidCharacterException, IOException {		
 		
-		if (args.length == 0) {
-			return;
-		}
-		
-		if (LineEditor.bufferOfStrings.lines() != 0) {
-			throw new ABufferOfStringsIsNotEmptyException(
-				"An input manager considered loading a file specified by a command-line argument when the line " +
-				"editor's buffer of strings was not empty."
-			);
-		}
-		
-		String thePath = args[0];
 		File theFile = new File(thePath);
+		int theNumberOfLinesInTheFile = 0;
 		FileReader theFileReader = new FileReader(theFile, StandardCharsets.UTF_8);
 		BufferedReader theBufferedReader = new BufferedReader(theFileReader);
 		
@@ -157,19 +170,22 @@ public class AnInputManager {
 			
 			if (thePresentCharacter == '\n') {
 				LineEditor.bufferOfStrings.addLine(theStringBuilder.toString());
+				theNumberOfLinesInTheFile++;
 				theStringBuilder = new StringBuilder();
 			}
 		}
 		if (theStringBuilder.length() != 0) {
 			LineEditor.bufferOfStrings.addLine(theStringBuilder.toString());
+			theNumberOfLinesInTheFile++;
 		}
 		
 		System.out.println(
-			"The line editor added to its buffer of strings " + LineEditor.bufferOfStrings.lines() +
+			"The line editor added to its buffer of strings " + theNumberOfLinesInTheFile +
 			" lines from the file at \"" + thePath + "\".\n"
 		);
 		
 		theBufferedReader.close();
+		theFileReader.close();
 		
 	}
 	

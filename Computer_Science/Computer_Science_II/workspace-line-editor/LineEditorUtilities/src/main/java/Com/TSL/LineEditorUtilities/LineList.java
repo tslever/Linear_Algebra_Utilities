@@ -76,6 +76,8 @@ public class LineList {
     	
     	this.head = null;
     	
+		System.out.println("The line editor's buffer of strings was cleared.");
+    	
     }
     
     
@@ -96,6 +98,33 @@ public class LineList {
     	}
     	
     	return theNumberOfLines;
+    	
+    }
+    
+    
+    /**
+     * load clears the line editor's buffer of strings if a append / overwrite indicate is false, loads the file at the
+     * provided path, and appends the lines in that file to the line editor's buffer of strings.
+     * 
+     * @param fileName
+     * @param append
+     */
+    
+    public void load(String fileName, boolean append) {
+
+    	if (!append) {
+    		empty();
+    	}
+    	
+    	try {
+    		AnInputManager.loadsTheFileAt(fileName);
+    	}
+    	catch (IOException theIOException) {
+    		System.out.println(theIOException.getMessage() + "\n");
+    	}
+    	catch (AnInvalidCharacterException theInvalidCharacterException) {
+    		System.out.println(theInvalidCharacterException.getMessage() + "\n");
+    	}
     	
     }
     
@@ -155,7 +184,7 @@ public class LineList {
     	}
     	
     	try {
-    	theBufferedWriter.flush();
+    		theBufferedWriter.flush();
     	}
     	catch (IOException theIOException) {
     		System.out.println("The line editor could not flush a buffered writer.");
@@ -166,6 +195,13 @@ public class LineList {
     	}
     	catch (IOException theIOException) {
     		System.out.println("The line editor could not close a buffered writer.");
+    	}
+    	
+    	try {
+    		theFileWriter.close();
+    	}
+    	catch (IOException theIOException) {
+    		System.out.println("The line editor could not close a file writer.");
     	}
 
     }

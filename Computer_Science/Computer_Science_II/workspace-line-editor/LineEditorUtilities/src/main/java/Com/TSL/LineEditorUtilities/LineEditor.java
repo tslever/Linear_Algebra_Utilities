@@ -30,7 +30,6 @@ public class LineEditor
 	 */
 	
     public static void main(String[] args) throws
-    	ABufferOfStringsIsNotEmptyException,
     	ACommandMenuHasBeenSetUpException,
     	ACommandMenuHasNotBeenSetUpException,
     	AnInsertsCommandException,
@@ -39,14 +38,13 @@ public class LineEditor
     	IOException
     {
     	
-    	// TODO: Check command-line arguments for a path to a text file. If a path is present, load the lines in the
-    	// corresponding file into bufferOfStrings.
-    	
-    	AnInputManager theInputManager = new AnInputManager();
-    	theInputManager.loadsAnyFileSpecifiedByTheFirstArgumentIn(args);
+    	if (args.length != 0) {
+    		AnInputManager.loadsTheFileAt(args[0]);
+    	}
     	
     	TheCommandMenuGenerator.setsUpTheCommandMenu();
     	
+    	AnInputManager theInputManager = new AnInputManager();
     	theInputManager.providesAnIntroduction();
     	theInputManager.listensForAndExecutesCommands();
     	
