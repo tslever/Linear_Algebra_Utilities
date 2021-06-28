@@ -38,17 +38,22 @@ public class TheCommandMenuGenerator {
     	// empty, the line editor provides a warning and prompts the user for another command. Otherwise, the line editor
     	// appends the line of text to the line editor's buffer of strings.
     	commandMenu.inserts(
-    		new ACommand("Append line to the line editor's buffer", "a", new AnEncapsulatorForAppendLine())
+    		new ACommand("Append line to the line editor's buffer of strings", "a", new AnEncapsulatorForAppendLine())
     	);
     	
     	// On receiving command "cls", the line editor clears all lines from the line editor's buffer of strings. 
-    	commandMenu.inserts(
-    		new ACommand("Clear all lines from the line editor's buffer", "cls", new AnEncapsulatorForClearBuffer())
-    	);
+    	commandMenu.inserts(new ACommand(
+    		"Clear all lines from the line editor's buffer of strings", "cls", new AnEncapsulatorForClearBuffer()
+    	));
     	
 //theCommandMenu.inserts(new ACommand("Count words", "count_words"));
 //theCommandMenu.inserts(new ACommand("Delete line", "delete_line <line number>"));
-//theCommandMenu.inserts(new ACommand("Display line", "display_line <line number>"));
+    	
+    	commandMenu.inserts(new ACommand(
+    		"Display the line in the buffer of strings with a given index",
+    		"line <index>",
+    		new AnEncapsulatorForDisplayLine()
+    	));
     	
     	// On receiving command "lines", the line editor outputs the number of lines in its buffer of strings to the
     	// standard output stream.
@@ -65,16 +70,16 @@ public class TheCommandMenuGenerator {
     	// of strings.
     	commandMenu.inserts(new ACommand(
 			"Load lines from a file into the line editor's buffer of strings",
-			"load <path> <append / overwrite option>",
+			"load <path relative to project directory> <append / overwrite option (true / false)>",
 			new AnEncapsulatorForLoadFile()
 		));
 			
-//theCommandMenu.inserts(new ACommand("Menu", "menu"));
+    	commandMenu.inserts(new ACommand("Display this command menu", "m", null));
     	
     	// On receiving command "p", the line editor outputs all lines in its buffer of strings, along with their
     	// indices, to the standard output stream.
     	commandMenu.inserts(
-    		new ACommand("Print lines in the line editor's buffer", "p", new AnEncapsulatorForPrintLines())
+    		new ACommand("Print lines in the line editor's buffer of strings", "p", new AnEncapsulatorForPrintLines())
     	);
     	
     	// On received command "quit", the line editor indicates that it is quitting and quits.
@@ -86,7 +91,7 @@ public class TheCommandMenuGenerator {
     	// path.
     	commandMenu.inserts(new ACommand(
     		"Save the lines in the line editor's buffer of strings to a file",
-    		"save <path>",
+    		"save <path relative to project directory>",
     		new AnEncapsulatorForSaveLines())
     	);
     	

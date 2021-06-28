@@ -21,6 +21,14 @@ public class AnEncapsulatorForLoadFile extends AnEncapsulatorForEdit {
 	
 	public void edit(String[] theArrayOfArguments) {
 		
+		if (!theArrayOfArguments[1].equals("true") &&
+			!theArrayOfArguments[1].equals("false")) {
+			System.out.println(
+				"An input manager received command \"load\" with an invalid append / overwrite option"
+			);
+			return;
+		}
+		
 		LineEditor.bufferOfStrings.load(theArrayOfArguments[0], Boolean.parseBoolean(theArrayOfArguments[1]));
 		
 	}

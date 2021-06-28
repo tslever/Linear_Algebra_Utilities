@@ -16,7 +16,7 @@ import java.io.IOException;
 public class LineList {
 
 
-    private Node head;
+    private Node<String> head;
 
     
     /**
@@ -78,6 +78,38 @@ public class LineList {
     	
 		System.out.println("The line editor's buffer of strings was cleared.");
     	
+    }
+    
+    
+    /**
+     * line outputs the line with a provided index to the standard output stream.
+     * 
+     * @param n
+     */
+    
+    public void line(int n) {
+      	// Print nth line in the document. (The nth node in the list)
+    	
+    	if (n >= lines()) {
+    		System.out.println("Line " + n + " does not exist.\n");
+    		return;
+    	}
+    	
+    	Node<String> theCurrentSinglyLinkedListNode = this.head;
+    	int theIndexOfTheCurrentNode = 0;
+    	while (theIndexOfTheCurrentNode < n) {
+    		theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
+    		theIndexOfTheCurrentNode++;
+    	}
+    	
+    	System.out.print(
+    		theCurrentSinglyLinkedListNode.providesItsData()
+    		.replace("\t", "\\t")
+    		.replace("\n", "\\n")
+    		.replace("\r", "\\r") +
+    		"\n\n"
+    	);
+
     }
     
     
@@ -154,6 +186,12 @@ public class LineList {
     }
     
     
+    /**
+     * save saves the lines in this list to a file at a provided path.
+     * 
+     * @param fileName
+     */
+    
     public void save(String fileName) {
     	
     	FileWriter theFileWriter;
@@ -205,6 +243,5 @@ public class LineList {
     	}
 
     }
-    
     
 }

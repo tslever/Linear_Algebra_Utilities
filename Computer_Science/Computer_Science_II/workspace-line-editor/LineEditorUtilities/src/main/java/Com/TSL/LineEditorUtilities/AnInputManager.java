@@ -50,7 +50,9 @@ public class AnInputManager {
 			
 			case "a":
 				theCommandMenu
-				.providesTheFirstInstanceOf(new ACommand("Append line to the line editor's buffer", "a", null))
+				.providesTheFirstInstanceOf(
+					new ACommand("Append line to the line editor's buffer of strings", "a", null)
+				)
 				.providesItsEncapsulatorForEdit()
 				.edit(null);
 				break;
@@ -58,10 +60,27 @@ public class AnInputManager {
 				
 			case "cls":
 				theCommandMenu
-				.providesTheFirstInstanceOf(new ACommand("Clear all lines from the line editor's buffer", "cls", null))
+				.providesTheFirstInstanceOf(new ACommand(
+					"Clear all lines from the line editor's buffer of strings", "cls", null
+				))
 				.providesItsEncapsulatorForEdit()
 				.edit(null);
 				break;
+				
+			case "line":
+				if (theArrayOfComponentsOfTheCommand.length < 2) {
+					System.out.println("An input manager received command \"line\" without an index.");
+					continue;
+				}
+				
+				theCommandMenu
+				.providesTheFirstInstanceOf(
+					new ACommand("Display the line in the buffer of strings with a given index", "line", null)
+				)
+				.providesItsEncapsulatorForEdit()
+				.edit(new String[] {theArrayOfComponentsOfTheCommand[1]});
+				break;
+				
 
 			case "lines":
 				theCommandMenu
@@ -80,26 +99,25 @@ public class AnInputManager {
 					continue;
 				}
 				
-				if (!theArrayOfComponentsOfTheCommand[2].equals("true") &&
-					!theArrayOfComponentsOfTheCommand[2].equals("false")) {
-					System.out.println(
-						"An input manager received command \"load\" with an invalid append / overwrite option"
-					);
-				}
-				
 				theCommandMenu
 				.providesTheFirstInstanceOf(new ACommand(
 					"Load lines from a file into the line editor's buffer of strings",
-					"load <path> <append / overwrite option>",
+					"load <path relative to project directory> <append / overwrite option (true / false)>",
 					null
 				))
 				.providesItsEncapsulatorForEdit()
 				.edit(new String[] {theArrayOfComponentsOfTheCommand[1], theArrayOfComponentsOfTheCommand[2]});
 				break;
 				
+			case "m":
+				System.out.print(theCommandMenu + "\n\n");
+				break;
+				
 			case "p":
 				theCommandMenu
-				.providesTheFirstInstanceOf(new ACommand("Print lines in the line editor's buffer", "p", null))
+				.providesTheFirstInstanceOf(
+					new ACommand("Print lines in the line editor's buffer of strings", "p", null)
+				)
 				.providesItsEncapsulatorForEdit()
 				.edit(null);
 				break;
@@ -111,9 +129,11 @@ public class AnInputManager {
 				}
 				
 				theCommandMenu
-				.providesTheFirstInstanceOf(
-					new ACommand("Save the lines in the line editor's buffer of strings to a file", "save <path>", null)
-				)
+				.providesTheFirstInstanceOf(new ACommand(
+					"Save the lines in the line editor's buffer of strings to a file",
+					"save <path relative to project directory>",
+					null
+				))
 				.providesItsEncapsulatorForEdit()
 				.edit(new String[] {theArrayOfComponentsOfTheCommand[1]});
 				break;
