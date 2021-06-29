@@ -1,9 +1,16 @@
 package Com.TSL.LineEditorUtilities;
 
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Scanner;
 
 
 /** 
@@ -37,7 +44,7 @@ public class LineList {
      * @param line
      */
     
-    public void addLine(String line) {
+    public void addLine(String line) throws AnAppendsStringException, AnInvalidCharacterException {
 
     	if (line == null) {
     		throw new AnAppendsStringException(
@@ -49,6 +56,10 @@ public class LineList {
     		throw new AnAppendsStringException(
     			"A buffer of strings found that a reference to a string to append was empty."
     		);
+    	}
+    	
+    	for (int i = 0; i < line.length(); i++) {
+    		check(line.charAt(i));
     	}
 		
 		Node<String> theSinglyLinkedListNodeForTheLine = new Node<String>(line, null);
@@ -65,6 +76,32 @@ public class LineList {
 		
 		theCurrentSinglyLinkedListNode.setsItsReferenceToTheNextNodeTo(theSinglyLinkedListNodeForTheLine);
     	
+    }
+    
+    
+    /**
+     * check throws an invalid character exception if the provided character is not a tab, newline character, carriage
+     * return, space, visible ASCII character other than space and backslash, left single quote, and right single quote.
+     * 
+     * @param thePresentCharacter
+     * @throws AnInvalidCharacterException
+     */
+    
+    private void check(char thePresentCharacter) throws AnInvalidCharacterException {
+    		
+		if ((thePresentCharacter != '\t') &&
+			(thePresentCharacter != '\n') &&
+			(thePresentCharacter != '\r') &&
+			!((thePresentCharacter >= ' ') && (thePresentCharacter <= '[')) &&
+			!((thePresentCharacter >= ']') && (thePresentCharacter <= '~')) &&
+			(thePresentCharacter != '\u2018') &&
+			(thePresentCharacter != '\u2019')
+		   ) {
+			throw new AnInvalidCharacterException(
+				"The UTF-8 character with index " + (int)thePresentCharacter + " is invalid."
+			);
+		}
+		
     }
     
     
@@ -149,16 +186,68 @@ public class LineList {
     	}
     	
     	try {
-    		AnInputManager.loadsTheFileAt(fileName);
+    		loadsTheFileAt(fileName);
     	}
     	catch (IOException theIOException) {
     		System.out.println(theIOException.getMessage() + "\n");
+    	}
+    	catch (AnAppendsStringException theAppendsStringException) {
+    		System.out.println(theAppendsStringException.getMessage());
     	}
     	catch (AnInvalidCharacterException theInvalidCharacterException) {
     		System.out.println(theInvalidCharacterException.getMessage() + "\n");
     	}
     	
     }
+    
+    
+	/**
+	 * loadsTheFileAt appends the lines of the file at a provided path into the line editor's buffer of strings.
+	 * 
+	 * @param args
+	 * @throws AnInvalidCharacterException
+	 * @throws IOException
+	 */
+	
+	public void loadsTheFileAt(String thePath)
+		throws AnAppendsStringException, AnInvalidCharacterException, IOException {		
+		
+		File theFile = new File(thePath);
+		int theNumberOfLinesInTheFile = 0;
+		FileReader theFileReader = new FileReader(theFile, StandardCharsets.UTF_8);
+		BufferedReader theBufferedReader = new BufferedReader(theFileReader);
+		
+		int thePresentCharacterAsAnInteger;
+		char thePresentCharacter;
+		StringBuilder theStringBuilder = new StringBuilder();
+		while ((thePresentCharacterAsAnInteger = theBufferedReader.read()) != -1) {
+			
+			thePresentCharacter = (char)thePresentCharacterAsAnInteger;
+			
+			check(thePresentCharacter);
+			
+			theStringBuilder.append(thePresentCharacter);
+			
+			if (thePresentCharacter == '\n') {
+				LineEditor.bufferOfStrings.addLine(theStringBuilder.toString());
+				theNumberOfLinesInTheFile++;
+				theStringBuilder = new StringBuilder();
+			}
+		}
+		if (theStringBuilder.length() != 0) {
+			LineEditor.bufferOfStrings.addLine(theStringBuilder.toString());
+			theNumberOfLinesInTheFile++;
+		}
+		
+		System.out.println(
+			"The line editor added to its buffer of strings " + theNumberOfLinesInTheFile +
+			" lines from the file at \"" + thePath + "\".\n"
+		);
+		
+		theBufferedReader.close();
+		theFileReader.close();
+		
+	}
     
     
     /**
@@ -242,6 +331,35 @@ public class LineList {
     		System.out.println("The line editor could not close a file writer.");
     	}
 
+    }
+    
+    
+    /**
+     * words counts 
+     * 
+     * @return
+     */
+    
+    public int words() {
+    	
+    	int theNumberOfWords = 0;
+    	
+    	Node<String> theCurrentSinglyLinkedListNode = this.head;
+    	Scanner theScannerForTheLine;
+    	while (theCurrentSinglyLinkedListNode != null) {
+    		
+    		theScannerForTheLine = new Scanner(theCurrentSinglyLinkedListNode.providesItsData());
+    		theScannerForTheLine.useDelimiter("[\\s\t,.;\u2018\u2019?*!\"@\\-:]+");
+    		while (theScannerForTheLine.hasNext()) {
+    			theNumberOfWords++;
+    			theScannerForTheLine.next();
+    		}
+    		theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
+    		
+    	}
+    	
+    	return theNumberOfWords;
+    	
     }
     
 }

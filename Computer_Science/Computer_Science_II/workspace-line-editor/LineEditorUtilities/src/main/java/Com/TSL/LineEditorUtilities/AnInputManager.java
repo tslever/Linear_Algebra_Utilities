@@ -146,79 +146,18 @@ public class AnInputManager {
 				.edit(null);
 				break;
 				
+			case "words":
+				theCommandMenu
+				.providesTheFirstInstanceOf(
+					new ACommand("Display the number of words in the line editor's buffer of strings", "words", null)
+				)
+				.providesItsEncapsulatorForEdit()
+				.edit(null);
+				break;
+				
 			}
 		
 		}
-		
-	}
-	
-	
-	/**
-	 * loadsTheFileAt appends the lines of the file at a provided path into the line editor's buffer of strings.
-	 * 
-	 * @param args
-	 * @throws AnInvalidCharacterException
-	 * @throws IOException
-	 */
-	
-	public static void loadsTheFileAt(String thePath) throws AnInvalidCharacterException, IOException {		
-		
-		File theFile = new File(thePath);
-		int theNumberOfLinesInTheFile = 0;
-		FileReader theFileReader = new FileReader(theFile, StandardCharsets.UTF_8);
-		BufferedReader theBufferedReader = new BufferedReader(theFileReader);
-		
-		int thePresentCharacterAsAnInteger;
-		char thePresentCharacter;
-		StringBuilder theStringBuilder = new StringBuilder();
-		while ((thePresentCharacterAsAnInteger = theBufferedReader.read()) != -1) {
-			
-			thePresentCharacter = (char)thePresentCharacterAsAnInteger;
-			
-			if ((thePresentCharacter != '\t') &&
-				(thePresentCharacter != '\n') &&
-				(thePresentCharacter != '\r') &&
-				!((thePresentCharacter >= ' ') && (thePresentCharacter <= '[')) &&
-				!((thePresentCharacter >= ']') && (thePresentCharacter <= '~'))
-			   ) {
-				throw new AnInvalidCharacterException(
-					"The UTF-8 character with index " + thePresentCharacterAsAnInteger + " is invalid."
-				);
-			}
-			
-			theStringBuilder.append(thePresentCharacter);
-			
-			if (thePresentCharacter == '\n') {
-				LineEditor.bufferOfStrings.addLine(theStringBuilder.toString());
-				theNumberOfLinesInTheFile++;
-				theStringBuilder = new StringBuilder();
-			}
-		}
-		if (theStringBuilder.length() != 0) {
-			LineEditor.bufferOfStrings.addLine(theStringBuilder.toString());
-			theNumberOfLinesInTheFile++;
-		}
-		
-		System.out.println(
-			"The line editor added to its buffer of strings " + theNumberOfLinesInTheFile +
-			" lines from the file at \"" + thePath + "\".\n"
-		);
-		
-		theBufferedReader.close();
-		theFileReader.close();
-		
-	}
-	
-	
-	/**
-	 * providesAnIntroduction provides an introduction for the line editor.
-	 * 
-	 * @throws ACommandMenuHasNotBeenSetUpException
-	 */
-	
-	public void providesAnIntroduction() throws ACommandMenuHasNotBeenSetUpException {
-		
-		System.out.print("Welcome to LineEditor\n\n" + TheCommandMenuGenerator.providesItsCommandMenu() + "\n\n");
 		
 	}
 

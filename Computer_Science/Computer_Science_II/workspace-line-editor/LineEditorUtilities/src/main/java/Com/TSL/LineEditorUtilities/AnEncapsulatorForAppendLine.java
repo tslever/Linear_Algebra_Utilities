@@ -32,7 +32,17 @@ public class AnEncapsulatorForAppendLine extends AnEncapsulatorForEdit {
 			return;
 		}
 		
-		LineEditor.bufferOfStrings.addLine(theLine); // throws AnAppendsStringException
+		try {
+			LineEditor.bufferOfStrings.addLine(theLine);
+		}
+		catch (AnAppendsStringException theAppendsStringException) {
+			System.out.println(theAppendsStringException.getMessage());
+			return;
+		}
+		catch (AnInvalidCharacterException theInvalidCharacterException) {
+			System.out.println(theInvalidCharacterException.getMessage());
+			return;
+		}
 		
 		System.out.println("The following line was added to the line editor's buffer of strings: \"" + theLine + "\".");
 		

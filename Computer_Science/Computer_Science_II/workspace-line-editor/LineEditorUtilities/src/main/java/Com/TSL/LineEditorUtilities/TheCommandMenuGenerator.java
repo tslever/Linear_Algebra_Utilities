@@ -35,8 +35,8 @@ public class TheCommandMenuGenerator {
     	commandMenu = new ACommandMenu();
     	
     	// On receiving command "a", the line editor prompts the user to enter a line of text. If the line is
-    	// empty, the line editor provides a warning and prompts the user for another command. Otherwise, the line editor
-    	// appends the line of text to the line editor's buffer of strings.
+    	// empty, the line editor provides a warning and prompts the user for another command. Otherwise, the line
+    	// editor appends the line of text to the line editor's buffer of strings.
     	commandMenu.inserts(
     		new ACommand("Append line to the line editor's buffer of strings", "a", new AnEncapsulatorForAppendLine())
     	);
@@ -46,7 +46,12 @@ public class TheCommandMenuGenerator {
     		"Clear all lines from the line editor's buffer of strings", "cls", new AnEncapsulatorForClearBuffer()
     	));
     	
-//theCommandMenu.inserts(new ACommand("Count words", "count_words"));
+    	commandMenu.inserts(new ACommand(
+    		"Display the number of words in the line editor's buffer of strings",
+    		"words",
+    		new AnEncapsulatorForCountWords()
+    	));
+    	
 //theCommandMenu.inserts(new ACommand("Delete line", "delete_line <line number>"));
     	
     	commandMenu.inserts(new ACommand(

@@ -30,6 +30,7 @@ public class LineEditor
 	 */
 	
     public static void main(String[] args) throws
+    	AnAppendsStringException,
     	ACommandMenuHasBeenSetUpException,
     	ACommandMenuHasNotBeenSetUpException,
     	AnInsertsCommandException,
@@ -38,14 +39,16 @@ public class LineEditor
     	IOException
     {
     	
+    	System.out.print("Welcome to Line Editor.\n\n");
+    
     	if (args.length != 0) {
-    		AnInputManager.loadsTheFileAt(args[0]);
+    		bufferOfStrings.loadsTheFileAt(args[0]);
     	}
     	
     	TheCommandMenuGenerator.setsUpTheCommandMenu();
+    	System.out.print(TheCommandMenuGenerator.providesItsCommandMenu() + "\n\n");
     	
     	AnInputManager theInputManager = new AnInputManager();
-    	theInputManager.providesAnIntroduction();
     	theInputManager.listensForAndExecutesCommands();
     	
     }
