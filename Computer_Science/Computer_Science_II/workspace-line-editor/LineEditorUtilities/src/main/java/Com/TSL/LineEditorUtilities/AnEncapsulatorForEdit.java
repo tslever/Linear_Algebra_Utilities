@@ -13,7 +13,7 @@ public abstract class AnEncapsulatorForEdit {
 
 	
 	/**
-	 * edit provides the header for the line-editor method of an ecapsulator.
+	 * edit provides the header for the line-editor method of an encapsulator.
 	 */
 	
 	public abstract void edit(String[] theArrayOfArguments);

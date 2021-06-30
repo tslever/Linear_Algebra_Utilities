@@ -36,17 +36,6 @@ public class Node<T> {
 	
 	
 	/**
-	 * setsItsReferenceToTheNextNodeTo sets this node's reference to the next node to theReferenceToTheNextNodeToUse.
-	 * 
-	 * @param theReferenceToTheNextNodeToUse
-	 */
-	
-	public void setsItsReferenceToTheNextNodeTo(Node<T> theReferenceToTheNextNodeToUse) {
-		this.referenceToTheNextNode = theReferenceToTheNextNodeToUse;
-	}
-	
-	
-	/**
 	 * providesItsData provides this node's data.
 	 * 
 	 * @return
@@ -65,6 +54,28 @@ public class Node<T> {
 	
 	public Node<T> providesItsReferenceToTheNextNode() {
 		return this.referenceToTheNextNode;
+	}
+	
+	
+	/**
+	 * setsItsDataTo sets this node's data to provided data.
+	 * 
+	 * @param theDataToUse
+	 */
+	
+	public void setsItsDataTo(T theDataToUse) {
+		this.data = theDataToUse;
+	}
+	
+	
+	/**
+	 * setsItsReferenceToTheNextNodeTo sets this node's reference to the next node to theReferenceToTheNextNodeToUse.
+	 * 
+	 * @param theReferenceToTheNextNodeToUse
+	 */
+	
+	public void setsItsReferenceToTheNextNodeTo(Node<T> theReferenceToTheNextNodeToUse) {
+		this.referenceToTheNextNode = theReferenceToTheNextNodeToUse;
 	}
 	
 }

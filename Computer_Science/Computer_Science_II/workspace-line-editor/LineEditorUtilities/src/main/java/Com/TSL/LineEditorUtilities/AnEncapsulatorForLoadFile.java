@@ -23,8 +23,8 @@ public class AnEncapsulatorForLoadFile extends AnEncapsulatorForEdit {
 		
 		if (!theArrayOfArguments[1].equals("true") &&
 			!theArrayOfArguments[1].equals("false")) {
-			System.out.println(
-				"An input manager received command \"load\" with an invalid append / overwrite option"
+			System.out.print(
+				"An input manager received command \"load\" with an invalid append / overwrite option.\n\n"
 			);
 			return;
 		}

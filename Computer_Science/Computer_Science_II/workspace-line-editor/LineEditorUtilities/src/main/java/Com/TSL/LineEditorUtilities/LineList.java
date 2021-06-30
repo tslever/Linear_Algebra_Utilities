@@ -8,8 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -44,17 +42,17 @@ public class LineList {
      * @param line
      */
     
-    public void addLine(String line) throws AnAppendsStringException, AnInvalidCharacterException {
+    public void addLine(String line) throws AnInsertsStringException, AnInvalidCharacterException {
 
     	if (line == null) {
-    		throw new AnAppendsStringException(
-    			"A buffer of strings found that a reference to a string to append was null."
+    		throw new AnInsertsStringException(
+    			"The line editor found that a reference to a string to append was null.\n"
     		);
     	}
     	
     	if (line.equals("")) {
-    		throw new AnAppendsStringException(
-    			"A buffer of strings found that a reference to a string to append was empty."
+    		throw new AnInsertsStringException(
+    			"The line editor found that a reference to a string to append was empty.\n"
     		);
     	}
     	
@@ -74,7 +72,97 @@ public class LineList {
 			theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
 		}
 		
+		ensureANewLineCharacterForTheStringOf(theCurrentSinglyLinkedListNode);
+		
 		theCurrentSinglyLinkedListNode.setsItsReferenceToTheNextNodeTo(theSinglyLinkedListNodeForTheLine);
+    	
+    }
+    
+    
+    /**
+     * addLine(String line, int n) inserts a provided line at a provided index.
+     * 
+     * @param line
+     * @param n
+     * @throws AnInsertsStringException
+     * @throws AnInvalidCharacterException
+     */
+    
+    public void addLine(String line, int n) throws AnInsertsStringException, AnInvalidCharacterException {
+    	
+    	n -= 1;
+    	
+    	if (line == null) {
+    		throw new AnInsertsStringException(
+    			"The line editor found that a reference to a string to append was null.\n"
+    		);
+    	}
+    	
+    	if (line.equals("")) {
+    		throw new AnInsertsStringException(
+    			"The line editor found that a reference to a string to append was empty.\n"
+    		);
+    	}
+    	
+		if (n < 0) {
+			throw new AnInsertsStringException(
+				"The line editor found that an index to use to insert a line in the line editor's buffer of strings " +
+				"was negative.\n"
+			);
+		}
+    	
+    	for (int i = 0; i < line.length(); i++) {
+    		check(line.charAt(i));
+    	}
+    	
+    	Node<String> theSinglyLinkedListNodeForTheLine = new Node<String>(line, null);
+    	
+		if (this.head == null) {
+			this.head = theSinglyLinkedListNodeForTheLine;
+			return;
+		}
+		
+		if (n == 0) {
+			ensureANewLineCharacterForTheStringOf(theSinglyLinkedListNodeForTheLine);
+			
+			theSinglyLinkedListNodeForTheLine.setsItsReferenceToTheNextNodeTo(this.head);
+			this.head = theSinglyLinkedListNodeForTheLine;
+			return;
+		}
+		
+		if (n >= lines()) {
+			
+			addLine(line);
+			
+			System.out.print("The line editor appended \"" + line + "\" to its buffer of strings.\n\n");
+			
+		}
+		
+		else {
+					
+			Node<String> thePreviousSinglyLinkedListNode = this.head;
+			Node<String> theCurrentSinglyLinkedListNode = this.head.providesItsReferenceToTheNextNode();
+			int theIndexOfTheCurrentNode = 1;
+			
+			while ((theCurrentSinglyLinkedListNode != null) && (theIndexOfTheCurrentNode < n)) {
+				thePreviousSinglyLinkedListNode = theCurrentSinglyLinkedListNode;
+				theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
+				theIndexOfTheCurrentNode++;
+			}
+		
+			n += 1;
+			
+			System.out.print(
+				"The line editor inserted " + theSinglyLinkedListNodeForTheLine.providesItsData() +
+				" into its buffer of strings at index " + n + ".\n\n"
+			);
+			
+			ensureANewLineCharacterForTheStringOf(theSinglyLinkedListNodeForTheLine);
+			
+			thePreviousSinglyLinkedListNode.setsItsReferenceToTheNextNodeTo(theSinglyLinkedListNodeForTheLine);
+			theSinglyLinkedListNodeForTheLine.setsItsReferenceToTheNextNodeTo(theCurrentSinglyLinkedListNode);
+			
+		}
     	
     }
     
@@ -106,6 +194,50 @@ public class LineList {
     
     
     /**
+     * delete deletes the line in the line editor's buffer of strings with index n, or outputs a warning that the
+     * provided index does not correspond to a line in the buffer of strings.
+     * 
+     * @param n
+     */
+    
+    public void delete(int n) {
+    	
+    	n -= 1;
+    	
+    	if ((n < 0) || (n >= lines())) {
+    		System.out.print("Line " + n + " does not exist in the line editor's buffer of strings.\n\n");
+    		return;
+    	}
+    	
+    	if (n == 0) {
+    		this.head = this.head.providesItsReferenceToTheNextNode();
+    		return;
+    	}
+    	
+    	Node<String> thePreviousSinglyLinkedListNode = this.head;
+    	Node<String> theCurrentSinglyLinkedListNode = this.head.providesItsReferenceToTheNextNode();
+    	int theIndexOfTheCurrentNode = 1;
+    	
+    	while (theIndexOfTheCurrentNode < n) {
+    		thePreviousSinglyLinkedListNode = theCurrentSinglyLinkedListNode;
+    		theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
+    		theIndexOfTheCurrentNode++;
+    	}
+    	
+    	thePreviousSinglyLinkedListNode.setsItsReferenceToTheNextNodeTo(
+    		theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode()
+    	);
+    	
+    	n += 1;
+    	
+    	System.out.print(
+    		"The line editor removed line " + n + ": " + theCurrentSinglyLinkedListNode.providesItsData() + ".\n\n"
+    	);
+    	
+    }
+    
+    
+    /**
      * empty clears this list of all lines.
      */
     
@@ -113,7 +245,25 @@ public class LineList {
     	
     	this.head = null;
     	
-		System.out.println("The line editor's buffer of strings was cleared.");
+		System.out.print("The line editor's buffer of strings was cleared.\n\n");
+    	
+    }
+    
+    
+    /**
+     * ensureANewLineCharacterForTheStringsOf ensures that the string of a provided node ends with a newline
+     * character.
+     * 
+     * @param theNode
+     */
+    
+    private void ensureANewLineCharacterForTheStringOf(Node<String> theNode) {
+    	
+		String theCurrentString = theNode.providesItsData();
+		if (theCurrentString.charAt(theCurrentString.length() - 1) != '\n') {
+			theCurrentString = theCurrentString + "\n";
+			theNode.setsItsDataTo(theCurrentString);
+		}
     	
     }
     
@@ -125,9 +275,10 @@ public class LineList {
      */
     
     public void line(int n) {
-      	// Print nth line in the document. (The nth node in the list)
     	
-    	if (n >= lines()) {
+    	n -= 1;
+    	
+    	if ((n < 0) || (n >= lines())) {
     		System.out.println("Line " + n + " does not exist.\n");
     		return;
     	}
@@ -191,8 +342,8 @@ public class LineList {
     	catch (IOException theIOException) {
     		System.out.println(theIOException.getMessage() + "\n");
     	}
-    	catch (AnAppendsStringException theAppendsStringException) {
-    		System.out.println(theAppendsStringException.getMessage());
+    	catch (AnInsertsStringException theInsertsStringException) {
+    		System.out.println(theInsertsStringException.getMessage());
     	}
     	catch (AnInvalidCharacterException theInvalidCharacterException) {
     		System.out.println(theInvalidCharacterException.getMessage() + "\n");
@@ -210,7 +361,7 @@ public class LineList {
 	 */
 	
 	public void loadsTheFileAt(String thePath)
-		throws AnAppendsStringException, AnInvalidCharacterException, IOException {		
+		throws AnInsertsStringException, AnInvalidCharacterException, IOException {		
 		
 		File theFile = new File(thePath);
 		int theNumberOfLinesInTheFile = 0;
@@ -257,13 +408,13 @@ public class LineList {
     public void print() {
     	
 	    Node<String> theCurrentSinglyLinkedListNode = this.head;
-	    int theIndexOfTheCurrentLine = 0;
+	    int theIndexOfTheCurrentLine = 1;
 		
 		String theCurrentLine;
 		while (theCurrentSinglyLinkedListNode != null) {
 			theCurrentLine = theCurrentSinglyLinkedListNode.providesItsData();
 			System.out.println(
-				theIndexOfTheCurrentLine + ": " +
+				theIndexOfTheCurrentLine + ". " +
 				theCurrentLine.replace("\t", "\\t").replace("\n", "\\n").replace("\r", "\\r")
 			);
 			theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
@@ -271,6 +422,33 @@ public class LineList {
 		}
 		
 		System.out.println();
+
+    }
+    
+    
+    /**
+     * replace replaces all occurrences in each line in the line editor's buffer of strings of a first provided string
+     * with a second provided string.
+     * 
+     * @return
+     */
+    
+    public void replace(String s1, String s2) {
+    	
+	    Node<String> theCurrentSinglyLinkedListNode = this.head;
+	    
+		while (theCurrentSinglyLinkedListNode != null) {
+			theCurrentSinglyLinkedListNode.setsItsDataTo(
+				theCurrentSinglyLinkedListNode.providesItsData().replace(s1, s2)
+			);
+			
+			theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
+		}
+		
+		System.out.print(
+			"All instances of \"" + s1 + "\" in the line editor's buffer of strings were replaced with \"" + s2 +
+			"\".\n\n"
+		);
 
     }
     
@@ -330,12 +508,37 @@ public class LineList {
     	catch (IOException theIOException) {
     		System.out.println("The line editor could not close a file writer.");
     	}
+    	
+		System.out.print(
+			"The lines in the line editor's buffer of strings were saved to a file at " + fileName + ".\n\n"
+		);
 
     }
     
     
     /**
-     * words counts 
+     * toString provides a string representation of this list.
+     * 
+     * @return
+     */
+    
+    public String toString() {
+    	
+    	String theRepresentationOfThisList = "";
+    	
+	    Node<String> theCurrentSinglyLinkedListNode = this.head;
+		while (theCurrentSinglyLinkedListNode != null) {
+			theRepresentationOfThisList += theCurrentSinglyLinkedListNode.providesItsData();
+			theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
+		}
+		
+		return theRepresentationOfThisList;
+
+    }
+    
+    
+    /**
+     * words provides the number of words in all of the lines in the line editor's buffer of strings.
      * 
      * @return
      */

@@ -2,7 +2,7 @@ package Com.TSL.LineEditorUtilities;
 
 
 /**
- * AnEncapsulatorForDisplayLine encapsulates a version of the edit method by which the line editor displays a line with
+ * AnEncapsulatorForDeleteLine encapsulates a version of the edit method by which the line editor deletes a line with
  * a provided index.
  * 
  * @author Tom Lever
@@ -10,17 +10,17 @@ package Com.TSL.LineEditorUtilities;
  * @since 06/26/21
  */
 
-public class AnEncapsulatorForDisplayLine extends AnEncapsulatorForEdit {
+public class AnEncapsulatorForDeleteLine extends AnEncapsulatorForEdit {
 	
 	
 	/**
-	 * edit allows the line editor to display a line with a provided index.
+	 * edit allows the line editor to delete a line with a given index.
 	 */
 	
 	public void edit(String[] theArrayOfArguments) {
 		
 		try {
-			LineEditor.bufferOfStrings.line(Integer.parseInt(theArrayOfArguments[0]));
+			LineEditor.bufferOfStrings.delete(Integer.parseInt(theArrayOfArguments[0]));
 		}
 		catch (NumberFormatException theNumberFormatException) {
 			System.out.print(

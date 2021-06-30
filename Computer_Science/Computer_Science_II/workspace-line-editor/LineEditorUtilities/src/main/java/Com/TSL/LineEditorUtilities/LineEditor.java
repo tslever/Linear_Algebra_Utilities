@@ -23,14 +23,17 @@ public class LineEditor
 	 * main is the entry point of this program, which offers file-manipulation and line-editing functionality.
 	 * 
 	 * @param args
+	 * @throws AnInsertsStringException
 	 * @throws ACommandMenuHasBeenSetUpException
 	 * @throws ACommandMenuHasNotBeenSetUpException
 	 * @throws AnInsertsCommandException
+	 * @throws AnInvalidCharacterException
 	 * @throws AnInvalidCommandException
+	 * @throws IOException
 	 */
 	
     public static void main(String[] args) throws
-    	AnAppendsStringException,
+    	AnInsertsStringException,
     	ACommandMenuHasBeenSetUpException,
     	ACommandMenuHasNotBeenSetUpException,
     	AnInsertsCommandException,
@@ -48,8 +51,7 @@ public class LineEditor
     	TheCommandMenuGenerator.setsUpTheCommandMenu();
     	System.out.print(TheCommandMenuGenerator.providesItsCommandMenu() + "\n\n");
     	
-    	AnInputManager theInputManager = new AnInputManager();
-    	theInputManager.listensForAndExecutesCommands();
+    	(new AnInputManager()).listensForAndExecutesCommands();
     	
     }
     

@@ -1,9 +1,6 @@
 package Com.TSL.LineEditorUtilities;
 
 
-import java.util.LinkedList;
-
-
 /**
  * ACommandMenu represents the structure for a command menu of commands sorted in alphabetic order.
  * 
@@ -114,7 +111,7 @@ public class ACommandMenu {
      * providesTheFirstInstanceOf provides the first instance of a command in the command menu with the same name and
      * text as a provided command.
      * 
-     * @param theItem
+     * @param theCommand
      * @return
      */
     
