@@ -72,8 +72,6 @@ public class LineList {
 			theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
 		}
 		
-		ensureANewLineCharacterForTheStringOf(theCurrentSinglyLinkedListNode);
-		
 		theCurrentSinglyLinkedListNode.setsItsReferenceToTheNextNodeTo(theSinglyLinkedListNodeForTheLine);
     	
     }
@@ -123,8 +121,6 @@ public class LineList {
 		}
 		
 		if (n == 0) {
-			ensureANewLineCharacterForTheStringOf(theSinglyLinkedListNodeForTheLine);
-			
 			theSinglyLinkedListNodeForTheLine.setsItsReferenceToTheNextNodeTo(this.head);
 			this.head = theSinglyLinkedListNodeForTheLine;
 			return;
@@ -156,8 +152,6 @@ public class LineList {
 				"The line editor inserted " + theSinglyLinkedListNodeForTheLine.providesItsData() +
 				" into its buffer of strings at index " + n + ".\n\n"
 			);
-			
-			ensureANewLineCharacterForTheStringOf(theSinglyLinkedListNodeForTheLine);
 			
 			thePreviousSinglyLinkedListNode.setsItsReferenceToTheNextNodeTo(theSinglyLinkedListNodeForTheLine);
 			theSinglyLinkedListNodeForTheLine.setsItsReferenceToTheNextNodeTo(theCurrentSinglyLinkedListNode);
@@ -230,9 +224,10 @@ public class LineList {
     	
     	n += 1;
     	
-    	System.out.print(
-    		"The line editor removed line " + n + ": " + theCurrentSinglyLinkedListNode.providesItsData() + ".\n\n"
-    	);
+    	// TODO: Uncomment after testing.
+    	//System.out.print(
+    	//	"The line editor removed line " + n + ": " + theCurrentSinglyLinkedListNode.providesItsData() + ".\n\n"
+    	//);
     	
     }
     
@@ -251,24 +246,6 @@ public class LineList {
     
     
     /**
-     * ensureANewLineCharacterForTheStringsOf ensures that the string of a provided node ends with a newline
-     * character.
-     * 
-     * @param theNode
-     */
-    
-    private void ensureANewLineCharacterForTheStringOf(Node<String> theNode) {
-    	
-		String theCurrentString = theNode.providesItsData();
-		if (theCurrentString.charAt(theCurrentString.length() - 1) != '\n') {
-			theCurrentString = theCurrentString + "\n";
-			theNode.setsItsDataTo(theCurrentString);
-		}
-    	
-    }
-    
-    
-    /**
      * line outputs the line with a provided index to the standard output stream.
      * 
      * @param n
@@ -279,7 +256,7 @@ public class LineList {
     	n -= 1;
     	
     	if ((n < 0) || (n >= lines())) {
-    		System.out.println("Line " + n + " does not exist.\n");
+    		System.out.println("Line " + (n+1) + " does not exist.");
     		return;
     	}
     	
@@ -290,12 +267,11 @@ public class LineList {
     		theIndexOfTheCurrentNode++;
     	}
     	
-    	System.out.print(
+    	System.out.println(
     		theCurrentSinglyLinkedListNode.providesItsData()
     		.replace("\t", "\\t")
     		.replace("\n", "\\n")
-    		.replace("\r", "\\r") +
-    		"\n\n"
+    		.replace("\r", "\\r")
     	);
 
     }
@@ -377,9 +353,10 @@ public class LineList {
 			
 			check(thePresentCharacter);
 			
-			theStringBuilder.append(thePresentCharacter);
-			
-			if (thePresentCharacter == '\n') {
+			if (thePresentCharacter != '\n') {
+				theStringBuilder.append(thePresentCharacter);
+			}
+			else {
 				LineEditor.bufferOfStrings.addLine(theStringBuilder.toString());
 				theNumberOfLinesInTheFile++;
 				theStringBuilder = new StringBuilder();
@@ -407,11 +384,15 @@ public class LineList {
     
     public void print() {
     	
+    	if (this.head == null) {
+    		return;
+    	}
+    	
 	    Node<String> theCurrentSinglyLinkedListNode = this.head;
 	    int theIndexOfTheCurrentLine = 1;
 		
 		String theCurrentLine;
-		while (theCurrentSinglyLinkedListNode != null) {
+		while (theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode() != null) {
 			theCurrentLine = theCurrentSinglyLinkedListNode.providesItsData();
 			System.out.println(
 				theIndexOfTheCurrentLine + ". " +
@@ -421,7 +402,13 @@ public class LineList {
 			theIndexOfTheCurrentLine++;
 		}
 		
-		System.out.println();
+		System.out.println(
+			theIndexOfTheCurrentLine + ". " +
+			theCurrentSinglyLinkedListNode.providesItsData()
+			.replace("\t", "\\t").replace("\n", "\\n").replace("\r", "\\r")
+		);
+		
+		//System.out.println(); // TODO: Uncomment after testing.
 
     }
     
@@ -445,10 +432,11 @@ public class LineList {
 			theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
 		}
 		
-		System.out.print(
-			"All instances of \"" + s1 + "\" in the line editor's buffer of strings were replaced with \"" + s2 +
-			"\".\n\n"
-		);
+		// TODO: Uncomment after testing.
+		//System.out.print(
+		//	"All instances of \"" + s1 + "\" in the line editor's buffer of strings were replaced with \"" + s2 +
+		//	"\".\n\n"
+		//);
 
     }
     
@@ -475,10 +463,26 @@ public class LineList {
     	
     	BufferedWriter theBufferedWriter = new BufferedWriter(theFileWriter);
     	
-    	Node<String> theCurrentSinglyLinkedListNode = this.head;
-    	String theCurrentLine;
-    	while (theCurrentSinglyLinkedListNode != null) {
-    		theCurrentLine = theCurrentSinglyLinkedListNode.providesItsData();
+    	if (this.head != null) {
+    	
+	    	Node<String> theCurrentSinglyLinkedListNode = this.head;
+	    	String theCurrentLine;
+	    	
+	    	while (theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode() != null) {
+	    		theCurrentLine = theCurrentSinglyLinkedListNode.providesItsData();
+	    		if (theCurrentLine.charAt(theCurrentLine.length() - 1) != '\n') {
+	    			theCurrentLine += "\n";
+	    		}
+	    		try {
+	    			theBufferedWriter.write(theCurrentLine);
+	    		}
+	    		catch (IOException theIOException) {
+	    			System.out.println("The line editor could not write the line \"" + theCurrentLine + "\".");
+	    		}
+	    		theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
+	    	}
+	    	
+	    	theCurrentLine = theCurrentSinglyLinkedListNode.providesItsData();
     		try {
     			theBufferedWriter.write(theCurrentLine);
     		}
@@ -486,6 +490,7 @@ public class LineList {
     			System.out.println("The line editor could not write the line \"" + theCurrentLine + "\".");
     		}
     		theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
+    	
     	}
     	
     	try {
@@ -524,13 +529,19 @@ public class LineList {
     
     public String toString() {
     	
+    	if (this.head == null) {
+    		return "";
+    	}
+    	
     	String theRepresentationOfThisList = "";
     	
 	    Node<String> theCurrentSinglyLinkedListNode = this.head;
-		while (theCurrentSinglyLinkedListNode != null) {
-			theRepresentationOfThisList += theCurrentSinglyLinkedListNode.providesItsData();
+		while (theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode() != null) {
+			theRepresentationOfThisList += theCurrentSinglyLinkedListNode.providesItsData() + "\n";
 			theCurrentSinglyLinkedListNode = theCurrentSinglyLinkedListNode.providesItsReferenceToTheNextNode();
 		}
+		
+		theRepresentationOfThisList += theCurrentSinglyLinkedListNode.providesItsData();
 		
 		return theRepresentationOfThisList;
 

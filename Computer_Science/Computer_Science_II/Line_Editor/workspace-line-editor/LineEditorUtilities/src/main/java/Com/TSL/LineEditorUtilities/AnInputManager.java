@@ -38,7 +38,7 @@ public class AnInputManager {
 			
 			ACommandMenu theCommandMenu = TheCommandMenuGenerator.providesItsCommandMenu();
 			
-			String[] theArrayOfComponentsOfTheCommand = theCommand.split(" ");
+			String[] theArrayOfComponentsOfTheCommand = theCommand.split(" ", 3);
 						
 			switch (theArrayOfComponentsOfTheCommand[0].toLowerCase()) {
 			
@@ -54,6 +54,16 @@ public class AnInputManager {
 				)
 				.providesItsEncapsulatorForEdit()
 				.edit(null);
+				break;
+				
+				
+			case "b":
+				if (theArrayOfComponentsOfTheCommand.length != 1) {
+					System.out.print("The line editor received the command \"b\" with too many arguments.\n\n");
+					continue;
+				}
+				
+				System.out.print(LineEditor.bufferOfStrings + "\n\n");
 				break;
 				
 				
@@ -146,8 +156,7 @@ public class AnInputManager {
 			case "load":
 				if (theArrayOfComponentsOfTheCommand.length != 3) {
 					System.out.print(
-						"The line editor received command \"load\" without a path and an append / overwrite option, " +
-						"or with too many arguments.\n\n"
+						"The line editor received command \"load\" without a path and an append / overwrite option.\n\n"
 					);
 					continue;
 				}
@@ -225,16 +234,6 @@ public class AnInputManager {
 				))
 				.providesItsEncapsulatorForEdit()
 				.edit(new String[] {theArrayOfComponentsOfTheCommand[1]});
-				break;
-				
-				
-			case "b":
-				if (theArrayOfComponentsOfTheCommand.length != 1) {
-					System.out.print("The line editor received the command \"b\" with too many arguments.\n\n");
-					continue;
-				}
-				
-				System.out.print(LineEditor.bufferOfStrings + "\n\n");
 				break;
 				
 				

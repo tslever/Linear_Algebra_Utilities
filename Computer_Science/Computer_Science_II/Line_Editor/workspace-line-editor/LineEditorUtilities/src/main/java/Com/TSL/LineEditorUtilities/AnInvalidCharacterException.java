@@ -10,7 +10,7 @@ package Com.TSL.LineEditorUtilities;
  * @since 06/26/21
  */
 
-public class AnInvalidCharacterException extends Exception {
+public class AnInvalidCharacterException extends RuntimeException { // TODO: Change to Exception after testing.
 
 	
 	/**
