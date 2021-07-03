@@ -227,7 +227,7 @@ public class MyIntBSTTree{
     * of the level after a provided level. Each version of this method outputs a tab character to the standard output
     * stream for every level between the first level in the tree and this version's level inclusive. Each version of
     * this method outputs the provided node's integer. Each version of this method passes itself a reference to the
-    * left child node of the node at the provided reference and the inex of the level after the provided level. 
+    * left child node of the node at the provided reference and the index of the level after the provided level. 
     * 
     * @param t
     * @param level

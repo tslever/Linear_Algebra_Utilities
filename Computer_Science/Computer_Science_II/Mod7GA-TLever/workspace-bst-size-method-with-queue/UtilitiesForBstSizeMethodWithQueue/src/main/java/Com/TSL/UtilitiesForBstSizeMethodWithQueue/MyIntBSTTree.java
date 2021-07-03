@@ -103,7 +103,7 @@ public class MyIntBSTTree{
    
    
    /**
-    * enqueueInOrderTheIntegerOf is a recursive method. If a provided reference to a node is null, this method does
+    * enqueueInOrderTheIntegersOf is a recursive method. If a provided reference to a node is null, this method does
     * nothing. This method passes itself the reference to the left child node of the provided reference to a node and
     * a reference to the queue in which to enqueue integers in ascending order. After this method's descendant returns,
     * this method enqueues the integer in the node referenced by the provided reference to a node. Finally, this
@@ -114,15 +114,15 @@ public class MyIntBSTTree{
     * @param theQueue
     */
    
-   private void enqueueInOrderTheIntegerOf(Node theNode, Queue<Integer> theQueue) {
+   private void enqueueInOrderTheIntegersOf(Node theNode, Queue<Integer> theQueue) {
 	   
 	   if (theNode == null) {
 		   return;
 	   }
 	   
-	   enqueueInOrderTheIntegerOf(theNode.getLeft(), theQueue);
+	   enqueueInOrderTheIntegersOf(theNode.getLeft(), theQueue);
 	   theQueue.add(theNode.getData());
-	   enqueueInOrderTheIntegerOf(theNode.getRight(), theQueue);
+	   enqueueInOrderTheIntegersOf(theNode.getRight(), theQueue);
 	   
    }
    
@@ -148,7 +148,7 @@ public class MyIntBSTTree{
       }
       
       Queue<Integer> theQueue = new LinkedList<Integer>();
-      enqueueInOrderTheIntegerOf(root, theQueue);
+      enqueueInOrderTheIntegersOf(root, theQueue);
       
       String theRepresentationOfAnArrayOfTheIntegersInThisBst = "[";
       
