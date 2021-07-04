@@ -20,6 +20,7 @@ public class MyIntBSTTree{
 	
 	
    private Node root;
+   private int[] sortedArrayOfIntegers;
    
    
    /**
@@ -100,7 +101,7 @@ public class MyIntBSTTree{
    
    
    /**
-    * comparisons(int val) returns the number of comparisons of a provided integer with the integer of a node of this
+    * comparisons(int val) provides the number of comparisons of a provided integer with the integer of a node of this
     * tree that are required to determine whether or not the provided integer is in this tree.
     * 
     * @param val
@@ -108,16 +109,7 @@ public class MyIntBSTTree{
     */
    
    public int comparisons(int val) {
-
-      // *** Student task ***  
-      /* Requirements: 
-       Overloaded method - Count and return how many comparisons performed to search for the node whose data equals the argument val.
-
-       *** Enter your code below *** 
-     */
-
 	   return searchFor(val, this.root);
-
    }
    
    
@@ -144,6 +136,109 @@ public class MyIntBSTTree{
 
        return searchFor(node.getData(), this.root);
       
+   }
+   
+   
+   public void setsItsArrayOfIntegersTo(int[] theArrayOfIntegersToUse) {
+	   Arrays.sort(theArrayOfIntegersToUse);
+	   this.sortedArrayOfIntegers = theArrayOfIntegersToUse;
+   }
+   
+   
+   /**
+    * thisBstContains indicates whether or not this binary search tree contains a provided integer. 
+    * 
+    * @param theIntegerToFind
+    * @return
+    */
+   
+   boolean thisBstContains(int theIntegerToFind) {
+	   return searchBstRecursivelyFor(theIntegerToFind, this.root);
+   }
+   
+   
+   /**
+    * searchBstRecursivelyFor is a recursive method. If a provided reference to a root of a tree is null, this method
+    * indicates that a provided integer is not in this tree. Else, if the provided integer is less than the integer of
+    * the node at the provided reference, this method passes to itself the provided integer and the reference to the
+    * left child node of the node at the provided reference. Else, if the provided integer is greater than the integer
+    * of the node at the provided reference, this method passes to itself the provided integer and the reference to the
+    * right child node of the node at the provided reference. Else, the provided integer is equal to the integer of the
+    * node at the provided reference, and this method indicates that the provided integer was found in the tree at the
+    * provided reference.
+    * 
+    * @param theIntegerToFind
+    * @param theRootOfTheTree
+    * @return
+    */
+   
+   boolean searchBstRecursivelyFor(int theIntegerToFind, Node theRootOfTheTree) {
+	   if (theRootOfTheTree == null) {
+		   return false;
+	   }
+	   else if (theIntegerToFind < theRootOfTheTree.getData()) {
+		   return searchBstRecursivelyFor(theIntegerToFind, theRootOfTheTree.getLeft());
+	   }
+	   else if (theIntegerToFind > theRootOfTheTree.getData()) {
+		   return searchBstRecursivelyFor(theIntegerToFind, theRootOfTheTree.getRight());
+	   }
+	   else {
+		   return true;
+	   }
+   }
+   
+   
+   /**
+    * thisSortedArrayContains indicates whether or not this binary search tree contains a provided integer.
+    * 
+    * @param theIntegerToFind
+    * @return
+    */
+   
+   boolean thisSortedArrayContains(int theIntegerToFind) {
+	   return searchSortedArrayRecursivelyFor(theIntegerToFind, 0, this.sortedArrayOfIntegers.length - 1);
+   }
+   
+   
+   /**
+    * searchSortedArrayRecursivelyFor is a recursive method. If the index of the first element, which indicates the
+    * lower bound of a subarray to search, is greater than the index of the last element, which indicates the upper
+    * bound of a subarray to search, then there is no subarray to search and this method indicates that a provided
+    * integer is not in the sorted array. Else, define the index of the middle element in the subarray to search. If
+    * the integer to find is equal to the middle element of the sorted array, this method indicates that  the provided
+    * integer is in the sorted array. If the integer to find is greater than the middle element, this method provides
+    * the output of a version of this method passed the integer to find, the index of the actual or theoretical element
+    * immediately "to the right" of the middle element, and the index of the last element. Else, this method provides
+    * the output of a version of this method passed the integer to find, the index of the first element, and the index
+    * of the actual or theoretical element immediately "to the left" of the middle element.
+    * 
+    * @param theIntegerToFind
+    * @param theIndexOfTheFirstElementInTheArray
+    * @param theIndexOfTheLastElementInTheArray
+    * @return
+    */
+   
+   boolean searchSortedArrayRecursivelyFor(
+       int theIntegerToFind, int theIndexOfTheFirstElement, int theIndexOfTheLastElement
+   ) {
+	   if (theIndexOfTheFirstElement > theIndexOfTheLastElement) {
+		   return false;
+	   }
+	   int theIndexOfTheMiddleElement =
+           theIndexOfTheFirstElement + (theIndexOfTheLastElement - theIndexOfTheFirstElement) / 2;
+	   if (theIntegerToFind == this.sortedArrayOfIntegers[theIndexOfTheMiddleElement]) {
+		   return true;
+	   }
+	   if (theIntegerToFind > this.sortedArrayOfIntegers[theIndexOfTheMiddleElement]) {
+		   return searchSortedArrayRecursivelyFor(
+		       theIntegerToFind, theIndexOfTheMiddleElement + 1, theIndexOfTheLastElement
+		   );
+	   }
+	   else {
+		   return searchSortedArrayRecursivelyFor(
+		       theIntegerToFind, theIndexOfTheFirstElement, theIndexOfTheMiddleElement - 1
+		   );
+	   }
    }
    
    
@@ -242,7 +337,8 @@ public class MyIntBSTTree{
    
    
    /**
-    * searchFor is a recursive method. Ultimately, it returns the number of comparisons 
+    * searchFor is a recursive method. Ultimately, it returns the number of comparisons of a provided integer with the
+    * integer of a node of this tree that are required to determine whether or not the provided integer is in this tree.
     * 
     * @param theIntegerToFind
     * @param theRootOfTheTree
@@ -250,7 +346,6 @@ public class MyIntBSTTree{
     */
    
    public int searchFor(int theIntegerToFind, Node theRootOfTheTree) {
-	   
 	   if (theRootOfTheTree == null) {
 		   return 0;
 	   }
@@ -263,7 +358,6 @@ public class MyIntBSTTree{
 	   else {
 		   return 1;
 	   }
-	   
    }
    
    
